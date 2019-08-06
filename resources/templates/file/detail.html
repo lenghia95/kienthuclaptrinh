@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap 4 Website Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/post.css">
+  <!-- <link rel="stylesheet" href="./fonts/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="./js/jquery-3.4.1.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <style>
+  
+  </style>
+</head>
+<body>
+<!-- header -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+      <div class="container p-0">
+        <a class="navbar-brand ml-2 home" href="/">Trang chủ</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ml-2" id="navb">
+          <ul class="navbar-nav mr-auto menu-top">
+              <li class="nav-item p-0">
+                  <a class="nav-link" href="/about">Giới thiệu</a>
+              </li>
+              <li class="nav-item p-0">
+                  <a class="nav-link" href="/contact">Liên hệ</a>
+              </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <a href="" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a href="" class="youtube"><i class="fa fa-youtube"></i></a>
+            <a href="" class="google-plus"><i class="fa fa-google-plus"></i></a>
+          </div>
+      </div>
+
+    </div>
+  </nav>
+  <div class="container-fluid header-logo">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+          <a href="http://kienthuclaptrinh.com" class="custom-logo-link" rel="home" itemprop="url">
+                  <img src="./images/uploads/logo.jpg" class="custom-logo" alt="" itemprop="logo">
+              </a>
+        </div>
+        <div class="col-md-9 header-banner text-right">
+          <a href="">
+                  <img width="729" height="90" src="./images/uploads/banner.png" class="attachment-newspaper-x-wide-banner size-newspaper-x-wide-banner" alt=""> 
+              </a>
+        </div>
+      </div>
+  </div>
+</div>
+</header>
+<!-- header -->
+
+<!-- main menu -->
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top container">
+  <a class="navbar-brand" href="#"><i class="fa fa-home"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Category</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category 1
+        </a>
+        <div class="dropdown-menu menu-dropdown" aria-labelledby="navbarDropdown">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <span class="text-uppercase text-body">Category 1</span>
+                <ul class="nav flex-column">
+                <li class="nav-item  p-0">
+                  <a class="nav-link active p-0" href="#">Active</a>
+                </li>
+                <li class="nav-item p-0 ">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+                <li class="nav-item p-0">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+              </ul>
+              </div>
+              <!-- /.col-md-4  -->
+              <div class="col-md-4">
+                <ul class="nav flex-column">
+                <li class="nav-item  p-0">
+                  <a class="nav-link p-0 active " href="#">Active</a>
+                </li>
+                <li class="nav-item  p-0">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+                <li class="nav-item p-0">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+              </ul>
+              </div>
+              <!-- /.col-md-4  -->
+              <div class="col-md-4">
+                <a href="">
+                  <img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
+                </a>
+                <p class="text-white">Short image call to action</p>
+
+              </div>
+              <!-- /.col-md-4  -->
+            </div>
+          </div>
+          <!--  /.container  -->
+        </div>
+      </li>
+
+    </ul>
+    
+  </div>
+
+</nav>
+<!-- main menu -->
+
+<!-- content -->
+<div class="container p-0 wrapper">
+
+    <div class="row">
+
+        <div class="col-sm-8">
+
+            <!-- Breadcrumb -->
+           <div class="fakeimg p-2 mt-2">
+                <div class="news-ticker" >
+                    <ul>
+                        <li>
+                            <span>
+                                <a href="https://freetuts.net" >
+                                     <span>Trang chủ</span>
+                                </a>
+                            </span>
+                        </li>
+                        <li>
+                            <span >
+                                <i class="fa fa-angle-double-right"></i>
+                                <a href="https://freetuts.net/database" >
+                                     <span>abc</span>
+                                </a>
+                            </span>
+                        </li>
+                        <li>
+                            <span>
+                                <i class="fa fa-angle-double-right"></i>
+                                <span class="title">tin tức 1</span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Breadcrumb -->
+
+
+            <!-- main-content -->
+            <div class="main-content">
+                <div class="fakeimg p-3 mt-2">
+                     <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="entry-title">
+                                <a href="">Hướng dẫn chèn Messenger Fanpage vào website (Chat messenger)</a>
+                            </h5>
+                            <div class="newspaper-x-post-meta">
+                                <div>
+                                    
+                                    <div class="mom-post-meta bp-meta single-post-meta">
+                                        <span class="author vcard mr-2"><i class="fa fa-user"></i> AutoRegJob </span>
+                                        <span class="mr-2">
+                                            <i class="fa fa-clock-o"></i>
+                                            <time datetime="2019-03-07T03:51:04+00:00" itemprop="datePublished" class="updated">07-03-2019</time>
+                                        </span>
+                                        <span class="mr-2"><i class="fa fa-eye"></i> 1</span>
+                                        <span class="mr-2"><i class="fa fa-comments"></i> 1</span>
+                                        <span> <i class="fa fa-tags"></i> </span><a href="" class="badge badge-info">Laravel</a>
+                                    </div>
+                                </div>
+                                
+
+                                <!-- post detail -->
+                                    <section class="post-content"> 
+                                        <h6 class="post-title">Bước 1: Vẽ vời một chút</h6>
+                                        <p>Trong project thực tế chuyện tìm kiếm thứ gì đó trong database bằng LIKE xảy ra như cơm bữa.</p>
+                                        <p>Ví dụ tìm về bảng users với Model là User nha</p>
+                                        <div class="code-toolbar">
+                                            <pre class=" language-php text-light">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="54" height="14" viewBox="0 0 54 14" class="d-block mb-2">
+                                                    <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+                                                        <circle cx="6" cy="6" r="6" fill="#FF5F56" stroke="#E0443E" stroke-width=".5"></circle>
+                                                        <circle cx="26" cy="6" r="6" fill="#FFBD2E" stroke="#DEA123" stroke-width=".5"></circle>
+                                                        <circle cx="46" cy="6" r="6" fill="#27C93F" stroke="#1AAB29" stroke-width=".5"></circle>
+                                                    </g>
+                                                </svg>
+                                                <code>
+                                                    use Illuminate\Support\Facades\Schema;
+                                                    use Illuminate\Database\Schema\Blueprint;
+                                                    use Illuminate\Database\Migrations\Migration;
+                                                    class CreateEventsTable extends Migration
+                                                    {
+                                                        /**
+                                                         * Run the migrations.
+                                                         *
+                                                         * @return void
+                                                         */
+                                                        public function up()
+                                                        {
+                                                            Schema::create('events', function (Blueprint $table) {
+                                                                $table-&gt;increments('id');
+                                                                $table-&gt;string('title');
+                                                                $table-&gt;date('start_date');
+                                                                $table-&gt;date('end_date');
+                                                                $table-&gt;timestamps();
+                                                            });
+                                                        }
+                                                        /**
+                                                         * Reverse the migrations.
+                                                         *
+                                                         * @return void
+                                                         */
+                                                        public function down()
+                                                        {
+                                                            Schema::drop("events");
+                                                        }
+                                                    }
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </section>
+                                <!-- post detail -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+
+                <!-- tags -->
+                    <div class="fakeimg p-2 mt-2">
+                        <h6 class="m-0"><i class="fa fa-tags"></i>Tags:
+                            <span> 
+                                
+                                <span class="badge badge-info">Abc </span>
+                                <span class="badge badge-info">Abc </span>
+                                <span class="badge badge-info">Abc </span>
+                            </span>
+                            
+                        </h6>
+                    </div>
+                <!-- tags -->
+
+                <!-- bình luận -->
+                    <div class="fakeimg p-2 mt-2">
+                        <h4> Bình luận:</h4>
+                        <div class="card mb-3 comment-form">
+                            <div class="card-body p-2">
+                                <form method="POST" action="https://chungnguyen.xyz/comment" accept-charset="UTF-8" class="postAjax" id="comment0">
+                                    <div class="form-group">
+                                    <textarea class="form-control" name="content" rows="3" placeholder="Nhập nội dung bình luận"></textarea>
+                                    </div>
+                                    <button type="submit" name="submit" class="btn btn-info btn-sm"><i class="fa fa-send"></i> Gửi bình luận</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="comment-show mb-5">
+                            <!-- Comment parent -->
+                            <div class="media mb-2 comment-parent" id="comment145">
+                                <img class="d-flex mr-2 border rounded comment-avatar" src="https://www.gravatar.com/avatar/885ef1bb9f053a7129f46856cee814a3?s=80&amp;d=identicon&amp;r=g" alt="Nguyễn Duy Nguyên avatar" title="Nguyễn Duy Nguyên avatar">
+                                <div class="media-body comment-body">
+                                    <div class="card bg-light p-2">
+                                        <h5 class="mt-0">Nguyễn Duy Nguyên</h5>
+                                        <div class="comment-body-content">
+                                            <div>Em thấy hay mà đọc xong cũng khó hiểu quá bác Chung :D</div>
+                                            <div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <ul class="list-inline mb-1 comment-action">
+
+                                            <li class="list-inline-item">
+                                                <a data-scrollto="#reply145" data-toggle="collapse" data-pell="145" href="#reply145" role="button" aria-expanded="false" aria-controls="reply145">Trả lời</a>
+                                            </li>
+                                            <li class="list-inline-item">3 tháng trước</li>
+                                        </ul>
+                                    </div>
+                                    <div class="collapse mb-1" id="reply145">
+                                        <form method="POST" action="https://chungnguyen.xyz/comment" accept-charset="UTF-8" class="postAjax" id="comment0">
+                                            <div class="form-group">
+                                            <textarea class="form-control" name="content" rows="3" placeholder="Nhập nội dung bình luận"></textarea>
+                                            </div>
+                                            <button type="submit" name="submit" class="btn btn-info btn-sm"><i class="fa fa-send"></i> Gửi bình luận</button>
+                                        </form>
+                                    </div>
+                                    <!-- Comment children -->
+                                    <div class="media mb-2 comment-children" id="comment146">
+                                        <img class="d-flex mr-2 border rounded comment-avatar" src="https://www.gravatar.com/avatar/ae9400c5091902176317fe0a0a662393?s=80&amp;d=identicon&amp;r=g" alt="Chung Nguyễn avatar" title="Chung Nguyễn avatar">
+                                        <div class="media-body">
+                                            <div class="card bg-light p-2">
+                                                <h5 class="mt-0">Chung Nguyễn</h5>
+                                                <div>Khó hiểu hè, copy về xài thử đi đã</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Comment parent -->
+                            <div class="media mb-2 comment-parent" id="comment119">
+                                <img class="d-flex mr-2 border rounded comment-avatar" src="https://www.gravatar.com/avatar/ab33f4956949bd02db4296004e0b4c4d?s=80&amp;d=identicon&amp;r=g" alt="Quốc Cường Nguyễn avatar" title="Quốc Cường Nguyễn avatar">
+                                <div class="media-body comment-body">
+                                    <div class="card bg-light p-2">
+                                        <h5 class="mt-0">Quốc Cường Nguyễn</h5>
+                                        <div class="comment-body-content">
+                                            <p>Cho em hỏi xíu, em áp dụng thử thì ra lỗi <strong>"Class 'App\ProductDetails' not found"</strong></p>
+                                            <div>Theo em hiểu thì là&nbsp; do project này em để model trong thư mục <code>app/Models</code>. Vậy làm sao custom lại để Builder hiểu tìm models ở trong thư mục "<code>app/Models</code>" ạ. Hoặc có nếu em hiểu sai thì giải quyết như thế nào trong trường hợp này ạ.</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <ul class="list-inline mb-1 comment-action">
+
+                                            <li class="list-inline-item">
+                                                <a data-scrollto="#reply119" data-toggle="collapse" data-pell="119" href="#reply119" role="button" aria-expanded="false" aria-controls="reply119">Comment</a>
+                                            </li>
+                                            <li class="list-inline-item">6 tháng trước</li>
+                                        </ul>
+                                    </div>
+                                    <div class="collapse mb-1" id="reply119">
+                                        <form method="POST" action="https://chungnguyen.xyz/comment" accept-charset="UTF-8" class="postAjax">
+                                            <input name="_token" type="hidden" value="DLp2dPdDcAI7SprNpcRRWTs9AgSXo7wtiuXnrhBc">
+                                            <input name="parent_id" type="hidden" value="119">
+                                            <input name="entity_id" type="hidden" value="235">
+                                            <input name="entity_type" type="hidden" value="Modules\Blog\Models\Post">
+                                            <input name="body" type="hidden" value="">
+                                            <div class="mb-2" id="reply-form-119"></div>
+                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Gửi bình luận</button>
+                                        </form>
+                                    </div>
+                                    <!-- Comment children -->
+                                    <div class="media mb-2 comment-children" id="comment120">
+                                        <img class="d-flex mr-2 border rounded comment-avatar" src="https://www.gravatar.com/avatar/ae9400c5091902176317fe0a0a662393?s=80&amp;d=identicon&amp;r=g" alt="Chung Nguyễn avatar" title="Chung Nguyễn avatar">
+                                        <div class="media-body">
+                                            <div class="card bg-light p-2">
+                                                <h5 class="mt-0">Chung Nguyễn</h5>
+                                                <div>Có 2 cách em nhé:
+                                                    <br>
+                                                    <ol>
+                                                        <li>import nó ở đầu file php bằng: use App\Models\ProductDetails;
+                                                            <br>
+                                                        </li>
+                                                        <li>gọi full namespace nó ra: \App\Models\ProductDetails::whereLike('name', 'name')-&gt;get();</li>
+                                                    </ol>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Comment parent -->
+
+                        </div>
+                    </div>
+                <!-- tags -->
+            </div>
+            <!-- main-content -->
+           
+        </div>
+
+        <!-- sidebar -->
+        <div class="col-sm-4">
+            <div class="fakeimg p-3 mt-2">
+                <form action="">
+                    <div class="input-group mb-3">
+                      <input type="text" name="keywork" class="form-control" placeholder="Search">
+                      <div class="input-group-append">
+                        <button class="btn btn-secondary search" type="submit"><i class="fa fa-search"></i></button> 
+                      </div>
+                    </div>
+                </form>
+                <div class="newspaper-x-blog-sidebar">
+                    <div class="widget widget_categories">
+                        <div class="widget-head">
+                            <h3 class="widget-title text-light p-2">Danh mục</h3>
+                        </div>
+                        <div class="categories mt-3">
+                            <ul>
+                                <li>
+                                    <a href=""> Học Laravel</a>
+                                </li>
+                                <li>
+                                    <a href=""> Học PHP</a>
+                                </li>
+                                <li>
+                                    <a href=""> Học Javascript</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+             <div class="fakeimg p-3 mt-2">
+                <div class="newspaper-x-blog-sidebar">
+                    <div class="widget widget_categories">
+                        <div class="widget-head">
+                            <h3 class="widget-title text-light p-2">Bài viết mới</h3>
+                        </div>
+                        <div class="post-news mt-3">
+                            <div class="mpw-post">
+                                <div class="post-img main-sidebar-element">
+                                    <a href="">
+                                        <img src="https://freetuts.net/upload/review_post/_thumbs/Images/2018/11/21/11691/sach-khoa-hoc-hay-danh-cho-thieu-nhi.gif" alt="" >
+                                    </a>
+                                </div>
+                                <div class="details has-feature-image">
+                                    <h6><a href="" title="">10 quyển sách khoa học hay dành cho thiếu nhi</a></h6>
+                                    <div class="mom-post-meta mom-w-meta">
+                                        <span class="entry-date">24-11-2018</span>  -  
+                                        <span class="entry-date"><i class="fa fa-eye"></i> 1 - </span>
+                                        <span class="entry-date"><i class="fa fa-comments"></i> 1 </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mpw-post">
+                                <div class="post-img main-sidebar-element">
+                                    <a href="">
+                                        <img src="https://freetuts.net/upload/review_post/_thumbs/Images/2018/11/21/11691/sach-khoa-hoc-hay-danh-cho-thieu-nhi.gif" alt="" >
+                                    </a>
+                                </div>
+                                <div class="details has-feature-image">
+                                    <h6><a href="" title="">10 quyển sách khoa học hay dành cho thiếu nhi</a></h6>
+                                    <div class="mom-post-meta mom-w-meta">
+                                        <span class="entry-date">24-11-2018</span>  -  
+                                        <span class="entry-date"><i class="fa fa-eye"></i> 1 - </span>
+                                        <span class="entry-date"><i class="fa fa-comments"></i> 1 </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mpw-post">
+                                <div class="post-img main-sidebar-element">
+                                    <a href="">
+                                        <img src="https://freetuts.net/upload/review_post/_thumbs/Images/2018/11/21/11691/sach-khoa-hoc-hay-danh-cho-thieu-nhi.gif" alt="" >
+                                    </a>
+                                </div>
+                                <div class="details has-feature-image">
+                                    <h6><a href="" title="">10 quyển sách khoa học hay dành cho thiếu nhi</a></h6>
+                                    <div class="mom-post-meta mom-w-meta">
+                                        <span class="entry-date">24-11-2018</span>  -  
+                                        <span class="entry-date"><i class="fa fa-eye"></i> 1 - </span>
+                                        <span class="entry-date"><i class="fa fa-comments"></i> 1 </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="fakeimg p-3 mt-2">
+                <div id="tag_cloud-2" class="widget widget_tag_cloud">
+                    <div class="widget-head">
+                        <h3 class="widget-title text-light p-2">Fanpage facebook </h3>
+                    </div>
+                    <div class="tagcloud">
+                        <div class="fb-page" data-href="https://www.facebook.com/kienthuclaptrinhdl/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                            <blockquote cite="https://www.facebook.com/kienthuclaptrinhdl/" class="fb-xfbml-parse-ignore">
+                                <a href="https://www.facebook.com/kienthuclaptrinhdl/">Kiến Thức Lập Trình</a>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+
+        </div>
+
+        <!-- sidebar -->
+
+    </div>
+</div>
+
+<!-- content -->
+
+
+<!-- Footer -->
+<footer class="page-footer font-small unique-color-dark bg-dark">
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5 pt-3">
+    <!-- Grid row -->
+    <div class="row mt-3">
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+        <!-- Content -->
+        <h6 class="text-uppercase font-weight-bold text-light">Về chúng tôi</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p class="text-light">Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+          consectetur
+          adipisicing elit.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold text-light">Tin mới nhất</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 50px;">
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold text-light">Danh mục</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold text-light">Liên hệ</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p class="text-light">
+            <i class="fa fa-home mr-3"></i>New York, NY 10012, US
+        </p>
+        <p class="text-light">
+          <i class="fa fa-envelope mr-3"></i>info@example.com
+        </p>
+        <p class="text-light">
+          <i class="fa fa-phone mr-3"></i>+01 234 567 88
+        </p>
+        <p class="text-light">
+          <i class="fa fa-print mr-3"></i>+01 234 567 89
+        </p>
+        <p class="text-light">
+            <a href="" class="facebook"><i class="fa fa-facebook-official"></i></a>
+        <a href="" class="youtube"><i class="fa fa-youtube"></i></a>
+        <a href="" class="google-plus"><i class="fa fa-google-plus"></i></a>
+        </p>
+          
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    <span class="text-light">© 2018 Copyright</span>
+    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(window).resize(function(){
+      if ($(window).width() >= 980){  
+
+          $(".navbar .dropdown-toggle").hover(function () {
+             $(this).parent().toggleClass("show");
+             $(this).parent().find(".dropdown-menu").toggleClass("show"); 
+           });
+
+          $( ".navbar .dropdown-menu" ).mouseleave(function() {
+            $(this).removeClass("show");  
+          });
+      } 
+    });  
+     
+  });
+</script>
+
+<script type="text/javascript">
+    // Disable form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Get the forms we want to add validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
+
+</body>
+</html>

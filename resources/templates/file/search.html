@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap 4 Website Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- <link rel="stylesheet" href="./fonts/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="./js/jquery-3.4.1.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <style>
+  
+  </style>
+</head>
+<body>
+<!-- header -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+      <div class="container p-0">
+        <a class="navbar-brand ml-2 home" href="/">Trang chủ</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ml-2" id="navb">
+          <ul class="navbar-nav mr-auto menu-top">
+              <li class="nav-item p-0">
+                  <a class="nav-link" href="/about">Giới thiệu</a>
+              </li>
+              <li class="nav-item p-0">
+                  <a class="nav-link" href="/contact">Liên hệ</a>
+              </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <a href="" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a href="" class="youtube"><i class="fa fa-youtube"></i></a>
+            <a href="" class="google-plus"><i class="fa fa-google-plus"></i></a>
+          </div>
+      </div>
+
+    </div>
+  </nav>
+  <div class="container-fluid header-logo">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+          <a href="http://kienthuclaptrinh.com" class="custom-logo-link" rel="home" itemprop="url">
+                  <img src="./images/uploads/logo.jpg" class="custom-logo" alt="" itemprop="logo">
+              </a>
+        </div>
+        <div class="col-md-9 header-banner text-right">
+          <a href="">
+                  <img width="729" height="90" src="./images/uploads/banner.png" class="attachment-newspaper-x-wide-banner size-newspaper-x-wide-banner" alt=""> 
+              </a>
+        </div>
+      </div>
+  </div>
+</div>
+</header>
+<!-- header -->
+
+<!-- main menu -->
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top container">
+  <a class="navbar-brand" href="#"><i class="fa fa-home"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Category</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category 1
+        </a>
+        <div class="dropdown-menu menu-dropdown" aria-labelledby="navbarDropdown">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <span class="text-uppercase text-body">Category 1</span>
+                <ul class="nav flex-column">
+                <li class="nav-item  p-0">
+                  <a class="nav-link active p-0" href="#">Active</a>
+                </li>
+                <li class="nav-item p-0 ">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+                <li class="nav-item p-0">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+              </ul>
+              </div>
+              <!-- /.col-md-4  -->
+              <div class="col-md-4">
+                <ul class="nav flex-column">
+                <li class="nav-item  p-0">
+                  <a class="nav-link p-0 active " href="#">Active</a>
+                </li>
+                <li class="nav-item  p-0">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+                <li class="nav-item p-0">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+              </ul>
+              </div>
+              <!-- /.col-md-4  -->
+              <div class="col-md-4">
+                <a href="">
+                  <img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
+                </a>
+                <p class="text-white">Short image call to action</p>
+
+              </div>
+              <!-- /.col-md-4  -->
+            </div>
+          </div>
+          <!--  /.container  -->
+        </div>
+      </li>
+
+    </ul>
+    
+  </div>
+
+</nav>
+<!-- main menu -->
+
+<!-- content -->
+<div class="container p-0 wrapper">
+
+    <div class="row">
+        <div class="col-md-12">
+             <!-- Breadcrumb -->
+               <div class="fakeimg p-2 mt-2">
+                    <div class="news-ticker" >
+                        <ul>
+                            <li>
+                                <span>
+                                    <a href="https://freetuts.net" >
+                                         <span>Trang chủ</span>
+                                    </a>
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <span class="title">Tìm kiếm</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Breadcrumb -->
+            
+            <div class="fakeimg p-2 mt-2">
+                
+                <div class="text-center mb-4"> 
+                    <h3>Kết quả tìm kiếm cho từ khóa 
+                        <span class="text-info">"seo"</span> - 
+                        <span class="text-info">10</span> 
+                        kết quả được tìm thấy
+                    </h3>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 post-home">
+                        <a href="">
+                            <img src="https://thachpham.com/wp-content/uploads/2018/11/AZDIGI-livestream-tang-qua-1-585x390.png" class="img-responsive margin" style="width:100%" alt="Image">
+                        </a>
+                        <h5 class="mt-1"><a href="">Hướng dẫn cách chèn fanpage vào website</a></h5>
+                        <div class="mom-post-meta bp-meta">
+                            <span class="author vcard">Đăng bởi: AutoRegJob</span>
+                            <span>Ngày: 
+                                <time datetime="2019-03-07T03:51:04+00:00" itemprop="datePublished" class="updated">07-03-2019</time>
+                                 - <i class="fa fa-eye"> 1 </i>
+                                 - <i class="fa fa-comments"> 1 </i>
+                            </span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+
+                    </div>
+
+                    <div class="col-sm-4 post-home">
+                        <a href="">
+                            <img src="https://thachpham.com/wp-content/uploads/2018/11/AZDIGI-livestream-tang-qua-1-585x390.png" class="img-responsive margin" style="width:100%" alt="Image">
+                        </a>
+                        <h5 class="mt-1"><a href="">Hướng dẫn cách chèn fanpage vào website</a></h5>
+                        <div class="mom-post-meta bp-meta">
+                            <span class="author vcard">Đăng bởi: AutoRegJob</span>
+                            <span>Ngày: 
+                                <time datetime="2019-03-07T03:51:04+00:00" itemprop="datePublished" class="updated">07-03-2019</time>
+                                 - <i class="fa fa-eye"> 1 </i>
+                                 - <i class="fa fa-comments"> 1 </i>
+                            </span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+
+                    </div>
+                    <div class="col-sm-4 post-home">
+                        <a href="">
+                            <img src="https://thachpham.com/wp-content/uploads/2018/11/AZDIGI-livestream-tang-qua-1-585x390.png" class="img-responsive margin" style="width:100%" alt="Image">
+                        </a>
+                        <h5 class="mt-1"><a href="">Hướng dẫn cách chèn fanpage vào website</a></h5>
+                        <div class="mom-post-meta bp-meta">
+                            <span class="author vcard">Đăng bởi: AutoRegJob</span>
+                            <span>Ngày: 
+                                <time datetime="2019-03-07T03:51:04+00:00" itemprop="datePublished" class="updated">07-03-2019</time>
+                                 - <i class="fa fa-eye"> 1 </i>
+                                 - <i class="fa fa-comments"> 1 </i>
+                            </span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+
+                    </div>
+                    <div class="col-sm-4 post-home">
+                        <a href="">
+                            <img src="https://thachpham.com/wp-content/uploads/2018/11/AZDIGI-livestream-tang-qua-1-585x390.png" class="img-responsive margin" style="width:100%" alt="Image">
+                        </a>
+                        <h5 class="mt-1"><a href="">Hướng dẫn cách chèn fanpage vào website</a></h5>
+                        <div class="mom-post-meta bp-meta">
+                            <span class="author vcard">Đăng bởi: AutoRegJob</span>
+                            <span>Ngày: 
+                                <time datetime="2019-03-07T03:51:04+00:00" itemprop="datePublished" class="updated">07-03-2019</time>
+                                 - <i class="fa fa-eye"> 1 </i>
+                                 - <i class="fa fa-comments"> 1 </i>
+                            </span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+
+                    </div>
+                    <div class="col-sm-4 post-home">
+                        <a href="">
+                            <img src="https://thachpham.com/wp-content/uploads/2018/11/AZDIGI-livestream-tang-qua-1-585x390.png" class="img-responsive margin" style="width:100%" alt="Image">
+                        </a>
+                        <h5 class="mt-1"><a href="">Hướng dẫn cách chèn fanpage vào website</a></h5>
+                        <div class="mom-post-meta bp-meta">
+                            <span class="author vcard">Đăng bởi: AutoRegJob</span>
+                            <span>Ngày: 
+                                <time datetime="2019-03-07T03:51:04+00:00" itemprop="datePublished" class="updated">07-03-2019</time>
+                                 - <i class="fa fa-eye"> 1 </i>
+                                 - <i class="fa fa-comments"> 1 </i>
+                            </span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+
+                    </div>
+                    <div class="col-sm-4 post-home">
+                        <a href="">
+                            <img src="https://thachpham.com/wp-content/uploads/2018/11/AZDIGI-livestream-tang-qua-1-585x390.png" class="img-responsive margin" style="width:100%" alt="Image">
+                        </a>
+                        <h5 class="mt-1"><a href="">Hướng dẫn cách chèn fanpage vào website</a></h5>
+                        <div class="mom-post-meta bp-meta">
+                            <span class="author vcard">Đăng bởi: AutoRegJob</span>
+                            <span>Ngày: 
+                                <time datetime="2019-03-07T03:51:04+00:00" itemprop="datePublished" class="updated">07-03-2019</time>
+                                 - <i class="fa fa-eye"> 1 </i>
+                                 - <i class="fa fa-comments"> 1 </i>
+                            </span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+
+                    </div>
+                    <div class="col-sm-4 post-home">
+                        <a href="">
+                            <img src="https://thachpham.com/wp-content/uploads/2018/11/AZDIGI-livestream-tang-qua-1-585x390.png" class="img-responsive margin" style="width:100%" alt="Image">
+                        </a>
+                        <h5 class="mt-1"><a href="">Hướng dẫn cách chèn fanpage vào website</a></h5>
+                        <div class="mom-post-meta bp-meta">
+                            <span class="author vcard">Đăng bởi: AutoRegJob</span>
+                            <span>Ngày: 
+                                <time datetime="2019-03-07T03:51:04+00:00" itemprop="datePublished" class="updated">07-03-2019</time>
+                                 - <i class="fa fa-eye"> 1 </i>
+                                 - <i class="fa fa-comments"> 1 </i>
+                            </span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+
+                    </div>
+                    <div class="col-sm-4 post-home">
+                        <a href="">
+                            <img src="https://thachpham.com/wp-content/uploads/2018/11/AZDIGI-livestream-tang-qua-1-585x390.png" class="img-responsive margin" style="width:100%" alt="Image">
+                        </a>
+                        <h5 class="mt-1"><a href="">Hướng dẫn cách chèn fanpage vào website</a></h5>
+                        <div class="mom-post-meta bp-meta">
+                            <span class="author vcard">Đăng bởi: AutoRegJob</span>
+                            <span>Ngày: 
+                                <time datetime="2019-03-07T03:51:04+00:00" itemprop="datePublished" class="updated">07-03-2019</time>
+                                 - <i class="fa fa-eye"> 1 </i>
+                                 - <i class="fa fa-comments"> 1 </i>
+                            </span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+
+                    </div>
+                    <div class="col-sm-4 post-home">
+                        <a href="">
+                            <img src="https://thachpham.com/wp-content/uploads/2018/11/AZDIGI-livestream-tang-qua-1-585x390.png" class="img-responsive margin" style="width:100%" alt="Image">
+                        </a>
+                        <h5 class="mt-1"><a href="">Hướng dẫn cách chèn fanpage vào website</a></h5>
+                        <div class="mom-post-meta bp-meta">
+                            <span class="author vcard">Đăng bởi: AutoRegJob</span>
+                            <span>Ngày: 
+                                <time datetime="2019-03-07T03:51:04+00:00" itemprop="datePublished" class="updated">07-03-2019</time>
+                                 - <i class="fa fa-eye"> 1 </i>
+                                 - <i class="fa fa-comments"> 1 </i>
+                            </span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <ul class="pagination mt-2">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar -->
+
+    </div>
+</div>
+
+<!-- content -->
+
+
+<!-- Footer -->
+<footer class="page-footer font-small unique-color-dark bg-dark">
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5 pt-3">
+    <!-- Grid row -->
+    <div class="row mt-3">
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+        <!-- Content -->
+        <h6 class="text-uppercase font-weight-bold text-light">Về chúng tôi</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p class="text-light">Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+          consectetur
+          adipisicing elit.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold text-light">Tin mới nhất</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 50px;">
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold text-light">Danh mục</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold text-light">Liên hệ</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p class="text-light">
+            <i class="fa fa-home mr-3"></i>New York, NY 10012, US
+        </p>
+        <p class="text-light">
+          <i class="fa fa-envelope mr-3"></i>info@example.com
+        </p>
+        <p class="text-light">
+          <i class="fa fa-phone mr-3"></i>+01 234 567 88
+        </p>
+        <p class="text-light">
+          <i class="fa fa-print mr-3"></i>+01 234 567 89
+        </p>
+        <p class="text-light">
+            <a href="" class="facebook"><i class="fa fa-facebook-official"></i></a>
+        <a href="" class="youtube"><i class="fa fa-youtube"></i></a>
+        <a href="" class="google-plus"><i class="fa fa-google-plus"></i></a>
+        </p>
+          
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    <span class="text-light">© 2018 Copyright</span>
+    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(window).resize(function(){
+      if ($(window).width() >= 980){  
+
+          $(".navbar .dropdown-toggle").hover(function () {
+             $(this).parent().toggleClass("show");
+             $(this).parent().find(".dropdown-menu").toggleClass("show"); 
+           });
+
+          $( ".navbar .dropdown-menu" ).mouseleave(function() {
+            $(this).removeClass("show");  
+          });
+      } 
+    });  
+     
+  });
+</script>
+
+<script type="text/javascript">
+    // Disable form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Get the forms we want to add validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
+
+</body>
+</html>

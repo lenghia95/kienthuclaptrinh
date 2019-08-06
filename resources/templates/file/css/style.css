@@ -1,0 +1,353 @@
+body {
+    /*background: #FFF url(../images/background_main.png) top center;*/
+}
+header{
+	background-color: #fff;
+}
+img{
+	max-width: 100%;
+}
+ul{
+	padding: 0px
+}
+li{
+	list-style: none;
+}
+a{
+	color: black;
+}
+a:hover{
+	text-decoration: none;
+}
+.home{
+	font-size: 14px;
+	margin-right: 0px;
+	padding:7px 5px;
+}
+.home:hover{
+	background-color: #4267b2;
+}
+.home.active{
+	background-color: #4267b2;
+}
+.header-logo{
+	border-bottom: 1px solid #e0e0e0;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(1, 1, 1, 0.1);
+}
+
+
+.fakeimg {
+    height: auto;
+    background: #fff !important;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0px 0px 1px 0px rgba(1, 1, 1, 0.1);
+}
+
+.facebook{
+	
+	padding: 5px 10px;
+	color: #fff;
+}
+
+.facebook:hover{
+	background-color: blue;
+	color: #fff !important;
+}
+.youtube{
+	
+	padding: 5px 10px;
+	color: #fff;
+}
+
+.youtube:hover{
+	background-color: red;
+	color: #fff !important;
+}
+
+.google-plus{
+	color: #fff;
+	padding: 5px 7px;
+}
+.google-plus:hover{
+	background-color: red;
+	color: #fff !important;
+}
+.menu-top, .menu-top li{
+  display: inline-block;
+}
+
+.menu-top li a{
+	color: #fff !important;
+  font-size: 14px;
+  padding-right: 5px !important;
+  padding-left: 5px !important;
+}
+.menu-top li:hover{
+	background-color: #4267b2;
+}
+.menu-top li.active{
+	background-color: #4267b2;
+}
+
+.header-banner{
+	padding: 10px 0px
+}
+.bg-primary{
+	background-color: #4267b2 !important;
+}
+
+hr.deep-purple{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+}
+.footer-copyright{
+	background-color: rgba(0,0,0,.2);
+}
+.menu-dropdown .nav-link{
+	color: black !important
+}
+.fakeimg .widget-head{
+	background: #4267b2;
+	padding: 6px 0px;
+}
+.fakeimg .widget-title {
+    font-size: 15px;
+    font-weight: 700;
+    background-color: black;
+    display: inline;
+}
+
+.news-ticker ul{
+	margin-bottom: 0px;
+}
+.news-ticker ul li{
+	float: left;
+	margin-right: 10px
+}
+.news-ticker ul li:last-child{
+	float: none;
+}
+
+.news-ticker ul li span{
+	color: #4267b2;
+}
+.news-ticker ul li span.title{
+	color: black;
+}
+.news-ticker ul li span:hover{
+	color: black;
+}
+/* main nenu */
+.navbar .dropdown-menu div[class*="col"] {
+   margin-bottom:1rem;
+}
+
+.navbar .dropdown-menu {
+  border-radius: 0px;
+  background-color:#fff!important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(255, 255, 255);
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #4267b2;
+    border-color: #4267b2;
+}
+.badge-info{
+	background-color: #4267b2;
+    border-color: #4267b2;
+    border-radius: 0px;
+    padding: 4px 6px;
+}
+.text-info{
+	color: #4267b2 !important;
+}
+.mom-post-meta{
+	font-size: 13px;
+    color: #c6c6c6;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.single-post-meta {
+    padding-bottom: 7px;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 16px;
+}
+.entry-content h4{
+	border-bottom: dotted 1px #4267b2;
+	padding-bottom: 5px;
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+/* breakpoint and up - mega dropdown styles */
+@media screen and (min-width: 992px) {
+  
+  /* remove the padding from the navbar so the dropdown hover state is not broken */
+.navbar {
+  padding-top:0px;
+  padding-bottom:0px;
+}
+
+/* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
+.navbar .main-menu {
+  padding: .21rem 0rem;
+  border-right: 1px solid #89a0cc;
+}
+
+.navbar .main-menu:first-child {
+  border-left: 1px solid #89a0cc;
+}
+
+/* makes the dropdown full width  */
+.navbar .dropdown {position:static;}
+
+.navbar .dropdown-menu {
+  width:100%;
+  left:0;
+  right:0;
+/*  height of nav-item  */
+  top:45px;
+}
+  
+  /* shows the dropdown menu on hover */
+.navbar .dropdown:hover .dropdown-menu, .navbar .dropdown .dropdown-menu:hover {
+  display:block!important;
+  margin: auto;
+}
+  
+  .navbar .dropdown-menu {
+    border: 1px solid rgba(0,0,0,.15);
+    background-color: #fff;
+  }
+
+}
+
+/* form search */
+
+input[name=keywork] {
+    border-radius: 0px;
+}
+
+input{
+	outline: none;
+}
+.search{
+	background: #fff;
+    color: black;
+    border-radius: 0px;
+}
+
+
+/* item news */
+
+.newspaper-x-image{
+	width: auto;
+	position: relative;
+	z-index: 2
+}
+
+.newspaper-x-image a{
+	width: auto;
+}
+.newspaper-x-image a img{
+	width: 100%;
+	object-fit: cover;
+	position: relative;
+	z-index: 1
+}
+
+.newspaper-x-image a img:hover, .post-home img:hover{
+  -ms-transform: scale(0.5); /* IE 9 */
+  -webkit-transform: scale(0.5); /* Safari 3-8 */
+  transform: scale(1.01); 
+  opacity: 0.5;
+}
+
+.categories ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  /*background-color: #f1f1f1;*/
+}
+
+.categories li a{
+  display: block;
+  color: #000;
+  padding: 8px 5px;
+  text-decoration: none;
+  border-bottom: 1px dotted #e1e1e1;
+  margin-bottom: 2px;
+}
+
+/* Change the link color on hover */
+.categories li a:hover, .categories li a.active{
+  background-color: #4267b2;
+  color: white;
+  border-bottom: 0px;
+}
+
+ .flex-column li a {
+ 	 border-bottom: 1px dotted #e1e1e1;
+ 	 padding: 3px 3px;
+ }
+
+ .flex-column li a:hover {
+ 	 color: #4267b2 !important;
+ 	 margin-left: 3px;
+ }
+ .nav-main{
+ 	text-transform: uppercase;
+
+ }
+
+ .text-body{
+ 	font-weight: 600;
+ }
+ .text-body:hover{
+	color: #4267b2 !important;
+ }
+.mpw-post{
+	border-bottom: 1px solid #eaeaea;
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px
+}
+.mpw-post .post-img{
+	width: 80px;
+	float: left;
+	margin-right: 10px;
+}
+.details h6 a{
+	font-size:15px;
+}
+
+.post-home h5,p{
+	text-align: justify;
+}
+
+.post-home{
+	margin-bottom: 20px
+}
+.search-404{
+	width: 100%;
+	max-width: 300px;
+}
+
+.errors-404{
+	background: url(../images/bg1.png);
+	border: 1px solid #e0e0e0;
+    box-shadow: 0px 0px 1px 0px rgba(1, 1, 1, 0.1);
+}
+
+.dropdown-menu{
+  min-width: 12rem
+}

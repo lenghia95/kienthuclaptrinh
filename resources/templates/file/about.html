@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap 4 Website Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- <link rel="stylesheet" href="./fonts/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="./js/jquery-3.4.1.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <style>
+  
+  </style>
+</head>
+<body>
+<!-- header -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+      <div class="container">
+        <a class="navbar-brand ml-2" href="/">Trang chủ</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ml-2" id="navb">
+          <ul class="navbar-nav mr-auto menu-top">
+              <li class="nav-item p-0">
+                  <a class="nav-link" href="/about">Giới thiệu</a>
+              </li>
+              <li class="nav-item p-0">
+                  <a class="nav-link" href="/contact">Liên hệ</a>
+              </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <a href="" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a href="" class="youtube"><i class="fa fa-youtube"></i></a>
+            <a href="" class="google-plus"><i class="fa fa-google-plus"></i></a>
+          </div>
+      </div>
+
+    </div>
+  </nav>
+  <div class="container-fluid header-logo">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+          <a href="http://kienthuclaptrinh.com" class="custom-logo-link" rel="home" itemprop="url">
+                  <img src="./images/uploads/logo.jpg" class="custom-logo" alt="" itemprop="logo">
+              </a>
+        </div>
+        <div class="col-md-9 header-banner text-right">
+          <a href="">
+                  <img width="729" height="90" src="./images/uploads/banner.png" class="attachment-newspaper-x-wide-banner size-newspaper-x-wide-banner" alt=""> 
+              </a>
+        </div>
+      </div>
+  </div>
+</div>
+</header>
+<!-- header -->
+
+<!-- main menu -->
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top container">
+  <a class="navbar-brand" href="#"><i class="fa fa-home"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Category</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category 1
+        </a>
+        <div class="dropdown-menu menu-dropdown" aria-labelledby="navbarDropdown">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <span class="text-uppercase text-body">Category 1</span>
+                <ul class="nav flex-column">
+                <li class="nav-item  p-0">
+                  <a class="nav-link active p-0" href="#">Active</a>
+                </li>
+                <li class="nav-item p-0 ">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+                <li class="nav-item p-0">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+              </ul>
+              </div>
+              <!-- /.col-md-4  -->
+              <div class="col-md-4">
+                <ul class="nav flex-column">
+                <li class="nav-item  p-0">
+                  <a class="nav-link p-0 active " href="#">Active</a>
+                </li>
+                <li class="nav-item  p-0">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+                <li class="nav-item p-0">
+                  <a class="nav-link p-0" href="#">Link item</a>
+                </li>
+              </ul>
+              </div>
+              <!-- /.col-md-4  -->
+              <div class="col-md-4">
+                <a href="">
+                  <img src="https://dummyimage.com/200x100/ccc/000&text=image+link" alt="" class="img-fluid">
+                </a>
+                <p class="text-white">Short image call to action</p>
+
+              </div>
+              <!-- /.col-md-4  -->
+            </div>
+          </div>
+          <!--  /.container  -->
+        </div>
+      </li>
+
+    </ul>
+    
+  </div>
+
+</nav>
+<!-- main menu -->
+
+<!-- content -->
+<div class="container p-0 wrapper">
+
+    <div class="row">
+
+        <div class="col-sm-8">
+
+           <div class="fakeimg p-2 mt-2">
+                <div class="news-ticker" >
+                    <ul>
+                        <li>
+                            <span>
+                                <a href="https://freetuts.net" >
+                                     <span>Trang chủ</span>
+                                </a>
+                            </span>
+                        </li>
+                        <li>
+                            <span>
+                                <i class="fa fa-angle-double-right"></i>
+                                <span class="title">Giới thiệu</span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fakeimg p-3 mt-2">
+                 <div class="main-col" id="main_container">
+                  <div class="base-box" itemscope="" itemtype="http://schema.org/Article" style="margin-bottom: 0px">
+                      <h4 id="main_title" class="post-tile entry-title" itemprop="headline">Giới thiệu</h4>
+                      <div class="mom-post-meta single-post-meta">
+                            <span class="author vcard">Đăng bởi: 
+                                <span class="fn">Administrator</span>
+                                <span>
+                                    - Vào ngày: 
+                                    <time datetime="2016-07-20T19:50:21+01:00" class="updated">20-07-2016</time>
+                                </span>
+                                <span>- View: 5835</span>
+                            </span>
+                      </div>
+
+                      <div class="entry-content">
+                          <p>Freetuts.net là một mã giảm giá, tại đây sẽ tổng hợp các tin tức giảm giá về Domain, Hosting và các khóa học lập trình của các trung tâm dạy học online. Rất mong các bạn sẽ mua sản phẩm thông qua link giới thiệu của freetuts.</p>
+
+                          <h4 class="text-info">Mạng xã hội</h4>
+
+                          <p>Theo quy định của nhà nước Việt Nam,&nbsp;muốn thành lập forum thì&nbsp;cần phải có giấy phép đăng ký, vì vậy freetuts không thể tạo sân chơi này cho các bạn được. Tuy nhiên, hiện nay đa số ban nào cũng có tài khoản Facebook nên freetuts sẽ lấy Facebook làm nơi thảo luận và&nbsp;trao đổi kiến thức.</p>
+
+                          <ul>
+                                <li>
+                                    <a class="text-warning" href="" target="_blank" rel="nofollow">Group thảo luận</a>
+                                </li>
+                                <li>
+                                    <a class="text-warning" href="" target="_blank" rel="nofollow">Fanpage</a>
+                                </li>
+                          </ul>
+
+                          <p>Ngoài ra blog còn có một kênh youtube để đăng các video dạy học miễn phí:</p>
+
+                          <ul>
+                                <li>
+                                    <a class="text-warning" href="" target="_blank" rel="nofollow">Freetuts Video</a>
+                                </li>
+                          </ul>
+
+                          <h4 class="text-info">Mong muốn</h4>
+
+                          <p>Vì một cộng đồng IT Việt Nam&nbsp;phát triển thì mình rất mong muốn nhận được sự ủng hộ của các bạn lập trình viên, admin của các blog khác. Chúng ta không nên ganh ghét lẫn nhau mã hãy giúp đỡ lẫn nhau, cùng nhau phát triển hơn nữa.</p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="fakeimg mt-2">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.580358405804!2d108.42059081429561!3d11.934265240018652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31716ccc751b2fbb%3A0xbc2f88c9401be4ee!2zTmfDtCBUaMOsIE5o4bqtbSwgUGjGsOG7nW5nIDQsIFRwLiDEkMOgIEzhuqF0LCBMw6JtIMSQ4buTbmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1551554133336" width="100%" height="450px" frameborder="0" allowfullscreen class="bando"></iframe>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="fakeimg p-3 mt-2">
+                <div class="newspaper-x-blog-sidebar">
+                    <div class="widget widget_categories">
+                        <div class="widget-head">
+                            <h3 class="widget-title text-light p-2">Thông tin liên hệ </h3>
+                        </div>
+                        <div class="next-days mt-3 pl-2">
+                            <p>Nếu thông tin bạn cần không được tìm thấy trong danh sách hỗ trợ, vui lòng liên hệ với chúng tôi thông qua:</p>
+                            <ul>
+                                <li>
+                                    <div class="day-summary">
+                                        <div class="d-decs" style="padding-left: 10px">
+                                            <i class="fa fa-phone"></i> Số điện thoại:
+                                            <a class="uppercase" href="#" title="CSDL căn bản">3213213213213</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="day-summary">
+                                        <div class="d-decs" style="padding-left: 10px">
+                                            <i class="fa fa-envelope"></i> Email:
+                                            <a class="uppercase" href="#" title="CSDL căn bản">lenghiak13ctt02@gmail.com</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="day-summary">
+                                        <div class="d-decs" style="padding-left: 10px">
+                                            <i class="fa fa-map-marker"></i> Địa chỉ:
+                                            <a class="uppercase" href="#" title="CSDL căn bản">04 Lê Duẩn, Thanh Khê, Đà Nẵng</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="fakeimg p-3 mt-2">
+                <div id="tag_cloud-2" class="widget widget_tag_cloud">
+                    <div class="widget-head">
+                        <h3 class="widget-title text-light p-2">Fanpage facebook </h3>
+                    </div>
+                    <div class="tagcloud">
+                        <div class="fb-page" data-href="https://www.facebook.com/kienthuclaptrinhdl/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                            <blockquote cite="https://www.facebook.com/kienthuclaptrinhdl/" class="fb-xfbml-parse-ignore">
+                                <a href="https://www.facebook.com/kienthuclaptrinhdl/">Kiến Thức Lập Trình</a>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+
+    </div>
+</div>
+
+<!-- content -->
+
+
+<!-- Footer -->
+<footer class="page-footer font-small unique-color-dark bg-dark">
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5 pt-3">
+    <!-- Grid row -->
+    <div class="row mt-3">
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+        <!-- Content -->
+        <h6 class="text-uppercase font-weight-bold text-light">Về chúng tôi</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p class="text-light">Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+          consectetur
+          adipisicing elit.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold text-light">Tin mới nhất</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 50px;">
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold text-light">Danh mục</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+        <p ><a class="text-light" href="#!">MDBootstrap</a></p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold text-light">Liên hệ</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p class="text-light">
+            <i class="fa fa-home mr-3"></i>New York, NY 10012, US
+        </p>
+        <p class="text-light">
+          <i class="fa fa-envelope mr-3"></i>info@example.com
+        </p>
+        <p class="text-light">
+          <i class="fa fa-phone mr-3"></i>+01 234 567 88
+        </p>
+        <p class="text-light">
+          <i class="fa fa-print mr-3"></i>+01 234 567 89
+        </p>
+        <p class="text-light">
+            <a href="" class="facebook"><i class="fa fa-facebook-official"></i></a>
+        <a href="" class="youtube"><i class="fa fa-youtube"></i></a>
+        <a href="" class="google-plus"><i class="fa fa-google-plus"></i></a>
+        </p>
+          
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    <span class="text-light">© 2018 Copyright</span>
+    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(window).resize(function(){
+      if ($(window).width() >= 980){  
+
+          $(".navbar .dropdown-toggle").hover(function () {
+             $(this).parent().toggleClass("show");
+             $(this).parent().find(".dropdown-menu").toggleClass("show"); 
+           });
+
+          $( ".navbar .dropdown-menu" ).mouseleave(function() {
+            $(this).removeClass("show");  
+          });
+      } 
+    });  
+     
+  });
+</script>
+
+<script type="text/javascript">
+    // Disable form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Get the forms we want to add validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
+
+</body>
+</html>
