@@ -1,7 +1,11 @@
 @extends('homes.layouts.app')
 
 @section('content')
-
+<meta property="og:url"           content="{{ Request::fullUrl() }}" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="{{ $post->title }}" />
+<meta property="og:description"   content="{{ $post->description }}" />
+<meta property="og:image"         content="{{ asset($post->thumbnail) }}" />
      <div class="col-sm-8 col-sm-12 col-lg-8">
 
          <!-- Breadcrumb -->
@@ -73,134 +77,173 @@
 
                 <!-- tags -->
                     <div class="fakeimg p-2 mt-2">
-                        <h6 class="m-0"><i class="fa fa-tags"></i>Tags:
-                            <span> 
-                                @foreach (App\Models\PostCategory::getCatsByPostId($post->id) as $cat)
-                                    <a href="{{ url('category/'.$cat->slug) }}"><span class="badge badge-info"> {{ $cat->name }} </span></a>
-                                @endforeach
-                                
-                            </span>
-                            
-                        </h6>
+                        <div class="row">
+                                <div class="col-md-6">
+                                <h6 class="m-0"><i class="fa fa-tags"></i>Tags:
+                                    <span> 
+                                        @foreach (App\Models\PostCategory::getCatsByPostId($post->id) as $cat)
+                                            <a href="{{ url('category/'.$cat->slug) }}"><span class="badge badge-info"> {{ $cat->name }} </span></a>
+                                        @endforeach
+                                    </span>
+                                </h6>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-right">
+                                        <div class="fb-share-button" 
+                                        data-href="{{ Request::url() }}" 
+                                        data-layout="button_count">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
+                    
                 <!-- tags -->
 
                 <!-- bình luận -->
                     <div class="fakeimg p-2 mt-2">
                         <h4> Bình luận:</h4>
-                        <div class="card mb-3 comment-form">
-                            <div class="card-body p-2">
-                                <form method="POST" action="https://chungnguyen.xyz/comment" accept-charset="UTF-8" class="postAjax" id="comment0">
-                                    <div class="form-group">
-                                    <textarea class="form-control" name="content" rows="3" placeholder="Nhập nội dung bình luận"></textarea>
-                                    </div>
-                                    <button type="submit" name="submit" class="btn btn-info btn-sm"><i class="fa fa-send"></i> Gửi bình luận</button>
-                                </form>
-                            </div>
-                        </div>
+                        
 
                         <div class="comment-show mb-5">
                             <!-- Comment parent -->
-                            <div class="media mb-2 comment-parent" id="comment145">
-                                <img class="d-flex mr-2 border rounded comment-avatar" src="https://www.gravatar.com/avatar/885ef1bb9f053a7129f46856cee814a3?s=80&amp;d=identicon&amp;r=g" alt="Nguyễn Duy Nguyên avatar" title="Nguyễn Duy Nguyên avatar">
+                            @foreach($comments as $comment)
+                            <div class="media mb-2 comment-parent comment-{{ $comment->id }}">
+                                <img class="d-flex mr-2 border rounded comment-avatar" src="{{ ( !empty($comment->avatar) ) ? asset($comment->avatar) : asset('uploads/users/user.png') }}" alt="{{ $comment->fullname }}" title="{{ $comment->fullname }}">
                                 <div class="media-body comment-body">
-                                    <div class="card bg-light p-2">
-                                        <h5 class="mt-0">Nguyễn Duy Nguyên</h5>
-                                        <div class="comment-body-content">
-                                            <div>Em thấy hay mà đọc xong cũng khó hiểu quá bác Chung :D</div>
-                                            <div>
-                                                <br>
+                                    <div class="card bg-light p-2 card-edit-{{ $comment->id }}">
+                                        <div class="comment-content-{{ $comment->id }}">
+                                            <h5 class="mt-0">{{ $comment->fullname }}</h5>
+                                            <div class="comment-body-content">
+                                                {!! $comment->content !!}
                                             </div>
+                                        </div>
+                                        <div class="form-edit-{{ $comment->id }}">
+                                            
                                         </div>
                                     </div>
                                     <div>
                                         <ul class="list-inline mb-1 comment-action">
-
                                             <li class="list-inline-item">
-                                                <a data-scrollto="#reply145" data-toggle="collapse" data-pell="145" href="#reply145" role="button" aria-expanded="false" aria-controls="reply145">Trả lời</a>
+                                                <a class="reply" data-scrollto="#reply{{ $comment->id }}" data-toggle="collapse" data-pell="{{ $comment->id }}" href="#reply{{ $comment->id }}" role="button" aria-expanded="false" aria-controls="reply{{ $comment->id }}"><i class="fa fa-reply" aria-hidden="true"></i> Trả lời</a>
                                             </li>
-                                            <li class="list-inline-item">3 tháng trước</li>
+                                            @if(Auth::check() && Auth::user()->fullname == $comment->fullname)
+                                            <li class="list-inline-item">
+                                                <a href="javascript:void(0)" data-id="{{ $comment->id }}" class="reply delete-comment"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="javascript:void(0)" data-id="{{ $comment->id }}" class="reply edit-comment"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa</a>
+                                            </li>
+                                            @endif
+                                            <li class="list-inline-item">
+                                                @php
+                                                    $current = Carbon\Carbon::create(date('Y-m-d H:i:s',strtotime($comment->created_at)));
+                                                @endphp
+                                                @if( $current->diffInMinutes() < 60)
+                                                    {{ ($current->diffInMinutes() == 0) ? 1 : $current->diffInMinutes()}} phút
+                                                @endif
+                                                @if( $current->diffInHours() > 0 && $current->diffInHours() < 24)
+                                                    {{ $current->diffInHours() }} giờ
+                                                @endif
+                                                @if( $current->diffInDays() > 0 && $current->diffInDays() < 30)
+                                                    {{ $current->diffInDays() }} ngày
+                                                @endif
+                                                @if( $current->diffInMonths() > 0 && $current->diffInMonths() < 12)
+                                                    {{ $current->diffInMonths() }} tháng
+                                                @endif
+                                                @if( $current->diffInYears() > 0)
+                                                    {{ $current->diffInYears() }} năm
+                                                @endif
+                                            </li>
                                         </ul>
                                     </div>
-                                    <div class="collapse mb-1" id="reply145">
-                                        <form method="POST" action="https://chungnguyen.xyz/comment" accept-charset="UTF-8" class="postAjax" id="comment0">
-                                            <div class="form-group">
-                                            <textarea class="form-control" name="content" rows="3" placeholder="Nhập nội dung bình luận"></textarea>
-                                            </div>
-                                            <button type="submit" name="submit" class="btn btn-info btn-sm"><i class="fa fa-send"></i> Gửi bình luận</button>
-                                        </form>
-                                    </div>
                                     <!-- Comment children -->
-                                    <div class="media mb-2 comment-children" id="comment146">
-                                        <img class="d-flex mr-2 border rounded comment-avatar" src="https://www.gravatar.com/avatar/ae9400c5091902176317fe0a0a662393?s=80&amp;d=identicon&amp;r=g" alt="Chung Nguyễn avatar" title="Chung Nguyễn avatar">
-                                        <div class="media-body">
-                                            <div class="card bg-light p-2">
-                                                <h5 class="mt-0">Chung Nguyễn</h5>
-                                                <div>Khó hiểu hè, copy về xài thử đi đã</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Comment parent -->
-                            <div class="media mb-2 comment-parent" id="comment119">
-                                <img class="d-flex mr-2 border rounded comment-avatar" src="https://www.gravatar.com/avatar/ab33f4956949bd02db4296004e0b4c4d?s=80&amp;d=identicon&amp;r=g" alt="Quốc Cường Nguyễn avatar" title="Quốc Cường Nguyễn avatar">
-                                <div class="media-body comment-body">
-                                    <div class="card bg-light p-2">
-                                        <h5 class="mt-0">Quốc Cường Nguyễn</h5>
-                                        <div class="comment-body-content">
-                                            <p>Cho em hỏi xíu, em áp dụng thử thì ra lỗi <strong>"Class 'App\ProductDetails' not found"</strong></p>
-                                            <div>Theo em hiểu thì là&nbsp; do project này em để model trong thư mục <code>app/Models</code>. Vậy làm sao custom lại để Builder hiểu tìm models ở trong thư mục "<code>app/Models</code>" ạ. Hoặc có nếu em hiểu sai thì giải quyết như thế nào trong trường hợp này ạ.</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <ul class="list-inline mb-1 comment-action">
-
-                                            <li class="list-inline-item">
-                                                <a data-scrollto="#reply119" data-toggle="collapse" data-pell="119" href="#reply119" role="button" aria-expanded="false" aria-controls="reply119">Comment</a>
-                                            </li>
-                                            <li class="list-inline-item">6 tháng trước</li>
-                                        </ul>
-                                    </div>
-                                    <div class="collapse mb-1" id="reply119">
-                                        <form method="POST" action="https://chungnguyen.xyz/comment" accept-charset="UTF-8" class="postAjax">
-                                            <input name="_token" type="hidden" value="DLp2dPdDcAI7SprNpcRRWTs9AgSXo7wtiuXnrhBc">
-                                            <input name="parent_id" type="hidden" value="119">
-                                            <input name="entity_id" type="hidden" value="235">
-                                            <input name="entity_type" type="hidden" value="Modules\Blog\Models\Post">
-                                            <input name="body" type="hidden" value="">
-                                            <div class="mb-2" id="reply-form-119"></div>
-                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Gửi bình luận</button>
-                                        </form>
-                                    </div>
-                                    <!-- Comment children -->
-                                    <div class="media mb-2 comment-children" id="comment120">
-                                        <img class="d-flex mr-2 border rounded comment-avatar" src="https://www.gravatar.com/avatar/ae9400c5091902176317fe0a0a662393?s=80&amp;d=identicon&amp;r=g" alt="Chung Nguyễn avatar" title="Chung Nguyễn avatar">
-                                        <div class="media-body">
-                                            <div class="card bg-light p-2">
-                                                <h5 class="mt-0">Chung Nguyễn</h5>
-                                                <div>Có 2 cách em nhé:
-                                                    <br>
-                                                    <ol>
-                                                        <li>import nó ở đầu file php bằng: use App\Models\ProductDetails;
-                                                            <br>
-                                                        </li>
-                                                        <li>gọi full namespace nó ra: \App\Models\ProductDetails::whereLike('name', 'name')-&gt;get();</li>
-                                                    </ol>
+                                    <div class="comment-children{{ $comment->id }} comment-child">
+                                        @foreach (App\Models\Comment::getCommentsByParent($comment->id) as $reply)
+                                        <div class="media mb-2 comment-{{ $comment->id }}" id="comment{{ $comment->id }}">
+                                            <img class="d-flex mr-2 border rounded comment-avatar" src="{{ ( !empty($reply->avatar) ) ? asset($reply->avatar) : asset('uploads/users/user.png') }}" alt="{{ $reply->fullname }}" title="{{ $reply->fullname }}">
+                                            <div class="media-body">
+                                                <div class="card bg-light p-2 card-edit-{{ $reply->id }}">
+                                                   <div class="comment-content-{{ $reply->id }}">
+                                                        <h5 class="mt-0">{{ $reply->fullname }}</h5>
+                                                        <div class="comment-body-content">
+                                                            {!! $reply->content !!}
+                                                        </div>
+                                                   </div>
+                                                   <div class="form-edit-{{ $reply->id }}"> </div>
                                                 </div>
+                                                <ul class="list-inline mb-1 comment-action">
+                                                    <li class="list-inline-item">
+                                                        <a class="reply" data-scrollto="#reply{{ $comment->id }}" data-toggle="collapse" data-pell="{{ $comment->id }}" href="#reply{{ $comment->id }}" role="button" aria-expanded="false" aria-controls="reply{{ $comment->id }}"><i class="fa fa-reply" aria-hidden="true"></i> Trả lời</a>
+                                                    </li>
+                                                    @if(Auth::check() && Auth::user()->id == $reply->uId)
+                                                    <li class="list-inline-item">
+                                                        <a href="javascript:void(0)" data-id="{{ $reply->id }}" class="reply delete-comment"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="javascript:void(0)" data-id="{{ $reply->id }}" class="reply edit-comment"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa</a>
+                                                    </li>
+                                                    @endif
+                                                    @php
+                                                        $current = Carbon\Carbon::create(date('Y-m-d H:i:s',strtotime($reply->created_at)));
+                                                    @endphp
+                                                    <li class="list-inline-item">
+                                                        @if( $current->diffInMinutes() < 60)
+                                                            {{ ($current->diffInMinutes() == 0) ? 1 : $current->diffInMinutes()}} phút
+                                                        @endif
+                                                        @if( $current->diffInHours() > 0 && $current->diffInHours() < 24)
+                                                            {{ $current->diffInHours() }} giờ
+                                                        @endif
+                                                        @if( $current->diffInDays() > 0 && $current->diffInDays() < 30)
+                                                            {{ $current->diffInDays() }} ngày
+                                                        @endif
+                                                        @if( $current->diffInMonths() > 0 && $current->diffInMonths() < 12)
+                                                            {{ $current->diffInMonths() }} tháng
+                                                        @endif
+                                                        @if( $current->diffInYears() > 0)
+                                                            {{ $current->diffInYears() }} năm
+                                                        @endif
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="collapse mb-1" id="reply{{ $comment->id }}">
+                                        <form method="POST" action="javascript:void(0)" accept-charset="UTF-8" class="postAjax" id="comment-reply">
+                                            @csrf
+                                            <input type="hidden" name="post" value="{{ $post->id }}">
+                                            <input type="hidden" name="comment" value="{{ $comment->id }}">
+                                            <div class="form-group textarea-comment">
+                                                <textarea class="form-control comment" name="content" rows="1" placeholder="Nhập nội dung bình luận..."></textarea>
+                                            </div>
+                                            <input type="reset" class="d-none">
+                                            {{-- <button type="submit" name="submit" class="btn btn-info btn-sm comment"><i class="fa fa-send"></i> Gửi bình luận</button> --}}
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Comment parent -->
-
+                            @endforeach
+                        </div>
+                        <div class="card mb-3 comment-form">
+                            <div class="card-body p-2">
+                                <form method="POST" action="javascript:void(0)" accept-charset="UTF-8" class="postAjax" id="comment0">
+                                    @csrf
+                                    <input type="hidden" name="post" value="{{ $post->id }}">
+                                    <div class="form-group textarea-comment">
+                                        <textarea class="form-control comment" name="content" rows="1" placeholder="Nhập nội dung bình luận..."></textarea>
+                                    </div>
+                                    <input type="reset" class="d-none">
+                                    {{-- <button type="submit" name="submit" class="btn btn-info btn-sm comment"><i class="fa fa-send"></i> Gửi bình luận</button> --}}
+                                </form>
+                            </div>
                         </div>
                     </div>
                 <!-- tags -->
             </div>
         <!-- main-content -->
-
+        
     </div>
 
         <!-- sidebar -->
@@ -212,6 +255,154 @@
 
     </div>
 
-   
 @stop
 
+@push('script')
+    <script type="text/javascript">
+    
+        $(document).ready(function () {
+            
+            $(document).on( 'keydown', 'textarea', function (e){
+                $(this).css('height', 'auto' );
+                $(this).height( this.scrollHeight );
+            });
+
+            $(document).on( 'focus', 'textarea[name=content]', function (e){
+                $(this).css('background-color', 'rgb(238, 238, 238)' );
+            });
+
+            @if(!Auth::check())
+                var login = false;
+            @else 
+                var login = true;
+            @endif
+
+            $('textarea.comment').on('click', function(){
+                if(login == false){
+                    window.location.href="/login";
+                }
+            });
+
+            $(document).on( "keypress", "#comment0", function(e) {
+                if(e.which == 13) {
+                    if(login == false){
+                        window.location.href="/login";
+                    }else if(login == true){
+                        var option = $( this ).serializeArray();
+
+                        if(option[2] == ''){
+                            return false;
+                        }else{
+                            $.ajax({
+                                type: "POST",
+                                url: "{{ url("ajax/comment") }}",
+                                data: {
+                                    post_id: option[1].value,
+                                    content: option[2].value,
+                                }, 
+                                success: function(data)
+                                {
+                                    // alert(data);return false;
+                                    $('.comment-show').append(data);
+                                    $('input[type=reset]').click();
+                                }
+                            });
+                            return false;
+                        }
+                    }
+                }
+            });
+
+            $(document).on( "keypress", "#comment-reply", function(e) {
+                if(e.which == 13) {
+                    if(login == false){
+                        window.location.href="/login";
+                    }else if(login == true){
+                        var option = $( this ).serializeArray();
+                        if(option[2] == ''){
+                            return false;
+                        }else{
+                            $.ajax({
+                                type: "POST",
+                                url: "{{ url("ajax/comment-reply") }}",
+                                data: {
+                                    post_id: option[1].value,
+                                    content: option[3].value,
+                                    comment_id: option[2].value,
+                                }, 
+                                success: function(data)
+                                {
+                                    $('.comment-children'+ option[2].value).append(data);
+                                    $('input[type=reset]').click();
+                                }
+                            });
+                            return false;
+                        }
+                    }
+                }
+            });
+            
+            $(document).on('click', '.delete-comment', function(){
+                var comment_id = $(this).data('id');
+                var check = confirm('Bạn chắc chắn muốn xóa bình luận này!');
+                if(check == true){
+                    $.ajax({
+                        type: "post",
+                        url: "{{ url("ajax/comment-del") }}",
+                        data: { comment_id: comment_id, _token: "{{ csrf_token() }}"},
+                        success: function (data) {
+                            if(data != ''){
+                                $('.comment-'+comment_id).remove();
+                            }
+                        }
+                    });
+                    
+                }else{return false}
+            });
+
+
+            $(document).on('click', '.edit-comment', function(){
+                var comment_id = $(this).data('id')
+                    content = $('.card-edit-'+ comment_id + ' .comment-body-content').text();
+                   
+                var html = '<form method="POST" action="javascript:void(0)" accept-charset="UTF-8" class="postAjax" id="edit-comment"><input type="hidden" name="comment_id" value="'+comment_id+'" /><div class="form-group textarea-comment"><textarea class="form-control comment" name="content" rows="1" placeholder="Nhập nội dung bình luận...">'+ content.trim() +'</textarea><span class="reply">Nhấn phím Esc để hủy</span></div><input type="reset" class="d-none"></form>';
+                
+                $('.comment-content-' + comment_id).css('display','none');
+                $('.form-edit-'+comment_id).html(html);
+                $( document ).on( 'keydown', function ( e ) {
+                    if ( e.keyCode === 27 ) {
+                        $('#edit-comment').hide();
+                        $('.comment-content-' + comment_id).css('display','block');
+                    }
+                });
+            });
+
+            $(document).on( "keypress", "#edit-comment", function(e) {
+                if(e.which == 13) {
+                    var option = $( this ).serializeArray();
+                   
+                    if(option[1] == ''){
+                        return false;
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ url("ajax/comment-edit") }}",
+                            data: {
+                                content: option[1].value,
+                                comment_id: option[0].value,
+                            }, 
+                            success: function(data)
+                            {
+                                $('.card-edit-'+ option[0].value + ' .comment-body-content').text(data);
+                                $('.comment-content-' + option[0].value).css('display','block');
+                                $('#edit-comment').hide();
+                            }
+                        });
+                        return false;
+                    }
+                }
+            });
+
+        });
+    </script>
+@endpush

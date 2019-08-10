@@ -22,14 +22,14 @@
                 </ul>
             </div>
         </div>
-        <div class="fakeimg mt-2 p-2">
-            @if(session('msg'))
-                <div class="alert alert-success">{{ session('msg') }}</div>
-            @endif
-            @if(session('failed'))
-                <div class="alert alert-danger">{{ session('failed') }}</div>
-            @endif
-        </div>
+
+        @if(session('msg'))
+            <br><div class="alert alert-success">{{ session('msg') }}</div>
+        @endif
+        @if(session('failed'))
+            <br><div class="alert alert-danger">{{ session('failed') }}</div>
+        @endif
+        
         <div class="fakeimg mt-2 p-2">
             <div class="modal-content">
                 <div class="modal-header">
@@ -107,7 +107,7 @@
                             </form>
                         </div>
                         <div class="col text-center">
-                            <a href="javascript:void(0)" class="fb btn social-facebook"><i class="fa fa-facebook fa-fw"></i> Login with Facebook</a>
+                            <a href="{{ url('/auth/redirect/facebook') }}" class="fb btn social-facebook"><i class="fa fa-facebook fa-fw"></i> Login with Facebook</a>
                             <a href="javascript:void(0)" class="twitter btn social-twitter"><i class="fa fa-twitter fa-fw"></i> Login with Twitter</a>
                             <a href="javascript:void(0)" class="google btn social-google"><i class="fa fa-google fa-fw"></i> Login with Google+</a>
                         </div>

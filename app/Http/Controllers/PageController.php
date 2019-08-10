@@ -20,7 +20,10 @@ class PageController extends Controller
 {
     public function __construct()
     {
-        Cookie::queue('back_load', request()->fullUrl(), 30);
+        if(request()->segment(1) != 'login'){
+            Cookie::queue('back_load', request()->fullUrl(), 30);
+        }
+        
     }
 
     public function index(Request $request)
@@ -68,7 +71,7 @@ class PageController extends Controller
     public function postLogin(Request $request)
     {
         $remember = ($request->remember == 'on') ? true : false;
-        $back = ($request->cookie('back')) ? $request->cookie('back') : $request->cookie('back_load');
+        $back = ( $request->cookie('back_load') ) ?  $request->cookie('back_load') : $request->cookie('back');
         if (Auth::attempt( ['email' => $request->email, 'password' => $request->password], $remember )) {
             return redirect()->intended( $back );
         }else{

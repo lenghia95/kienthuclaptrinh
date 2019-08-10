@@ -109,12 +109,35 @@
                                     @php
                                         $parent = new App\Models\Comment;
                                     @endphp
-                                    {{ ($comment->parent != null) ? $parent->getItemReply($comment->parent)->email : 'Level 1 comment'}}
-                                    @if($comment->parent != null)
-                                    <br><span class="label label-primary">
-                                        {{ $parent->getItemReply($comment->parent)->id }}
-                                    </span>
+                                    @if($comment->parent == 0)
+                                        <span class="label label-primary">Level 1 comment</span>
+                                   
+                                    @elseif($parent->getItemReply($comment->parent))
+                                       
+                                        {{ $parent->getItemReply($comment->parent)->email }}
+                                        <br>
+                                        <span class="label label-primary">Comment reply</span>
+                                        <span class="label label-primary">
+                                           ID: {{ $parent->getItemReply($comment->parent)->id }}
+                                        </span>
+                                    @else
+                                        <span class="label label-danger">
+                                            BL Level1 đã xóa
+                                        </span>
                                     @endif
+                                    {{-- @if($comment->parent == 0) --}}
+                                        {{-- {!! ($comment->parent == 0) ? '<span class="label label-primary">Level 1 comment</span>' : $parent->getItemReply($comment->parent)->email !!} --}}
+                                        {{-- @if($comment->parent != null)
+                                        <br><span class="label label-primary">
+                                            {{ $parent->getItemReply($comment->parent)->id }}
+                                        </span>
+                                        @endif --}}
+                                    {{-- @else 
+                                        <span class="label label-primary">
+                                            BL Level1 đã xóa
+                                        </span>
+                                        
+                                    @endif --}}
                                 </td>
                                 <td align="center">
                                     <a data-key="{{ $comment->id }}" data-status="{{ $comment->status }}" class="status-contact label label-{{ ($comment->status == 1) ? 'success' : 'warning' }}"> {{ ($comment->status == 1) ? 'On' : 'Off' }} </a>

@@ -21,6 +21,10 @@ Route::post('/contact', 'PageController@postContact');
 Route::get('category/{slug}', 'PostController@category');
 Route::get('post/{slug}', 'PostController@post');
 
+Route::post('ajax/comment', 'PostController@comment');
+Route::post('ajax/comment-reply', 'PostController@commentReply');
+Route::post('ajax/comment-del', 'PostController@deleteComment');
+Route::post('ajax/comment-edit', 'PostController@updateComment');
 
 /* ================== Login Admin ================== */
 Route::get('admin/login', 'Auth\LoginController@login')->name('login');
@@ -34,3 +38,11 @@ Route::post('login', 'PageController@postLogin');
 Route::get('logout', 'PageController@logout');
 Route::post('register', 'Auth\LoginController@postRegister');
 Route::get('ajax/unique-email', 'Auth\LoginController@ajaxUniqueEmail');
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');

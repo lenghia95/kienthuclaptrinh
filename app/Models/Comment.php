@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 
 class Comment extends Model
 {
@@ -14,6 +15,8 @@ class Comment extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+
+    #======================Admin====================#
     public static function getItems()
     {
         $comments = DB::table('comments as c')->join('users as u','c.user_id','=','u.id')
@@ -38,7 +41,7 @@ class Comment extends Model
     {
         $comment = DB::table('comments as c')->join('users as u','c.user_id','=','u.id')
         ->join('posts as p','c.post_id','=','p.id')->where('c.id',$id)
-        ->select('c.id','title', 'fullname','email','c.status','parent','c.content','c.created_at','c.updated_at')->first();
+        ->select('c.id','title', 'c.post_id', 'fullname', 'u.id as uId', 'avatar', 'email','c.status','parent','c.content','c.created_at','c.updated_at')->first();
         if($comment){
             return $comment;
         }
@@ -83,6 +86,7 @@ class Comment extends Model
         $comments = Comment::where('post_id',$post_id)->get();
         return $comments;
     }
+
     public function postsId($comments)
     {
         $arrId = [];
@@ -96,4 +100,31 @@ class Comment extends Model
         Comment::whereIn('post_id',$this->postsId($this->getCommentsByPostId($post_id)))->delete();
     }
     #==============end delete comments by post_id ============#
+
+
+
+    #======================Homes====================#
+
+    public function getCommentsByPostIdParent($post_id)
+    {
+        $comments = DB::table('comments as c')->join('users as u','c.user_id','=','u.id')
+        ->join('posts as p','c.post_id','=','p.id')->where('c.post_id',$post_id)->where('parent',0)->where('c.status',1)
+        ->select('c.id','title', 'avatar', 'fullname','email','c.status','parent','c.content','c.created_at','c.updated_at')
+        ->get();
+        return $comments;
+    }
+
+    public static function getCommentsByParent($parent)
+    {
+        $comments = DB::table('comments as c')->join('users as u','c.user_id','=','u.id')
+        ->join('posts as p','c.post_id','=','p.id')->where('parent',$parent)->where('c.status',1)
+        ->select('c.id','title', 'avatar', 'fullname', 'u.id as uId', 'email','c.status','parent','c.content','c.created_at','c.updated_at')
+        ->get();
+        return $comments;
+    }
+
+    public static function addComment($arrContent){
+        $addComment = Comment::create($arrContent);
+        return $addComment;
+    }
 }

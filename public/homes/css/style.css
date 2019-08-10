@@ -19,8 +19,20 @@ a{
 a:hover{
 	text-decoration: none;
 }
+
 input{
   border-radius: 0px !important;
+}
+textarea[name=content]{
+  border-radius: 20px;
+  background: rgb(238, 238, 238);
+}
+.textarea-comment{
+  margin-bottom: 0px;
+}
+.comment-child{
+  border-left: 2px solid #92aada;
+  padding-left: 5px;
 }
 .error{
   width: 100%;
@@ -452,6 +464,48 @@ input[type=search]:focus {
     margin-left: 5px;
 }
 
-.modal-content{
-    border-radius: 0px;
+.modal-content, .alert, button{
+    border-radius: 0px !important;
+}
+
+.comment-avatar{
+  width: 40px;
+  border: 1px solid #dee2e6!important;
+  border-radius: 50% !important;
+  height: 40px;
+  object-fit: cover;
+}
+.reply{
+  color: #3b97f9;
+  font-size: 14px;
+}
+.card h5{
+  font-size: 15px;
+  color: #003194;
+}
+
+#goTop {
+  background: #b1b2b3;
+  position: fixed;
+  line-height: 50px;
+  width: 50px;
+  left: 10px;
+  bottom: 25px;
+  height: 50px;
+  color: #f8f8f8;
+  text-align: center;
+  font-size: 22px;
+  display: none;
+  z-index: 1000;
+  padding: 0!important;
+}
+#goTop:hover {
+  /* background: #e9ebec; */
+  opacity: 0.8;
+}
+#goTop.show {
+  opacity: 1;
+}
+.enotype-icon-arrow-up:before {
+  content: "\f062";
 }
