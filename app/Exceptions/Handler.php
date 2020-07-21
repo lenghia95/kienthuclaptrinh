@@ -52,6 +52,7 @@ class Handler extends ExceptionHandler
             if ( $request->is('admin/*') ) {
                 return \Response::view('admins.errors.404');
             }
+            
             return \Response::view('homes.errors.404');
         }
         return parent::render($request, $exception);

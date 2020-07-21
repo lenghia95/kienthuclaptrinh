@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-//use App\Http\Requests\ReConfig;
+
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Config;
@@ -18,6 +19,9 @@ class ConfigController extends Controller
 
     public function index()
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $config = new Config;
         return view('admins.configs.index',[
             'title'   => $this->title,
@@ -45,6 +49,9 @@ class ConfigController extends Controller
      */
     public function store(Request $request)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $all = $request->all();
         Config::updateConfig($all);
         return redirect()->route('configs.index')->with('update_succeeded',config('admin.update_succeeded'));

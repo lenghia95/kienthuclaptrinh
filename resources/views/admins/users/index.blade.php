@@ -37,13 +37,13 @@
                                 <li><a href="" target="_blank" class="export-selected">Selected rows</a></li>
                             </ul>
                         </div>
-
+                        @can('create')
                         <div class="btn-group pull-right" style="margin-right: 10px">
                             <a href="" class="btn btn-sm btn-success" title="New" data-toggle="modal" data-target="#flipFlop">
                                 <i class="fa fa-save"></i><span class="hidden-xs">&nbsp;&nbsp;{{ config('admin.new')}}</span>
                             </a>
                         </div>
-
+                        @endcan
                     </div>
                     <span>
                     <a class="btn btn-sm btn-primary grid-refresh" title="Refresh"><i class="fa fa-refresh"></i> <span class="hidden-xs">{{ config('admin.refresh')}}</span></a>
@@ -113,10 +113,9 @@
                             </th>
                             <th>{{ config('admin.email') }}</th>
                             <th>{{ config('admin.name') }}</th>
-                            {{-- <th>{{ config('admin.role') }}</th> --}}
                             <th>{{ config('admin.image') }}</th>
                             <th>{{ config('admin.status') }}</th>
-                            <th>{{ config('admin.created_at') }}</th>
+                            <th>{{ config('admin.role') }}</th>
                             <th>{{ config('admin.action') }}</th>
                         </tr>
                         </thead>
@@ -129,16 +128,7 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->fullname }}</td>
-                                {{-- <td>
 
-                                    @if($roles = App\Models\Role::whereIn('id', json_decode($user->role_id))->get())
-                                        @foreach($roles as $role)
-                                            <span class="label label-success mr-5">
-                                                {{ $role->name }}
-                                            </span>
-                                        @endforeach
-                                    @else @endif
-                                </td> --}}
                                 @if($user->avatar)
                                     <td align="center">
                                         <img src="{{ asset( $user->avatar )  }}" alt="" class="img-thumbnail" width="50" height="50"/>
@@ -147,15 +137,29 @@
                                     <td align="center"><strong>Chưa cập nhật</strong></td>
                                 @endif
                                 <td>
-                                    <span data-key="{{ $user->id }}" data-status="{{ $user->status }}" class="_status status-user label label-{{ ($user->status == 1) ? 'success' : 'warning' }}"> {{ ($user->status == 1) ? 'Đã duyệt' : 'Chưa duyệt' }} </span>
+                                    @can('create')
+                                        <span data-key="{{ $user->id }}" data-status="{{ $user->status }}" class="_status status-user label label-{{ ($user->status == 1) ? 'success' : 'warning' }}"> {{ ($user->status == 1) ? 'Đã duyệt' : 'Chưa duyệt' }} </span>
+                                    @else 
+                                        <span class="label label-{{ ($user->status == 1) ? 'success' : 'warning' }}"> {{ ($user->status == 1) ? 'Đã duyệt' : 'Chưa duyệt' }} </span>
+                                    @endcan
                                 </td>
-                                <td>{{ date('d/m/Y', strtotime($user->created_at) ) }}</td>
-                                <td>
-                                    {{--<a href=""><i class="fa fa-eye"></i></a>--}}
+                                 <td>
+                                    @php $Role = new App\Models\Role @endphp
+                                    @foreach ($Role->getRoleByUserId($user->id) as $role)
+                                        <span class="label label-info"> {{ $role->name }} </span><br>
+                                    @endforeach
+                                   
+                                </td>
+                                <td align="center">
+                                    @if(Auth::id() == $user->id || Auth::user()->permission == 'Supper_admin')
+                                    <a href="{{ route('users.show',['id' => $user->id]) }}"><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('users.edit',['id' => $user->id]) }}"><i class="fa fa-edit"></i></a>
-                                    <a href="javascript:void(0)" data-id="{{ $user->id }}" class="grid-row-delete">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
+                                    @endif
+                                    @if($user->permission != 'Supper_admin' && Auth::user()->can('create'))
+                                        <a href="javascript:void(0)" data-id="{{ $user->id }}" class="grid-row-delete">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -218,17 +222,17 @@
                                             </div>
                                         </div>
 
-                                        {{--<div class="form-group">
+                                        <div class="form-group">
                                             <div class="col-sm-12">
                                                 <label for="name" class="control-label">{{ config('admin.role') }}*</label>
                                                 <label for="roles" generated="true" class="error"></label>
-                                                <select class="form-control roles" style="width: 100%;" name="roles[]" multiple="multiple" data-placeholder="{{ config('admin.role') }}" data-value="">
-                                                    @foreach(App\Models\Role::get() as $role)
+                                                <select class="form-control category" style="width: 100%;" name="roles[]" multiple="multiple" data-placeholder="{{ config('admin.role') }}" data-value="">
+                                                    @foreach($roles as $role)
                                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>--}}
+                                        </div>
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <label for="name" class="control-label">{{ config('admin.fullname') }}</label>
@@ -273,10 +277,10 @@
             $('.grid-row-delete').unbind('click').click(function() {
                 var id = $(this).data('id');
                 swal({
-                    title: "Bạn có chắc chắn muốn xóa ?",
+                    title: "You definitely want to delete?",
                     icon:'error',
                     dangerMode: true,
-                    buttons: ["Đóng", "Xác nhận"],
+                    buttons: ["Cancel", "Yes"],
 
                 }).then((willDelete) => {
                     if (willDelete) {
@@ -289,14 +293,14 @@
                             },
                             success: function(data) {
                                 if(data == 'true'){
-                                    swal("Bạn đã xó thành công!", {
+                                    swal("Delete success!", {
                                         buttons: false,
                                         timer: 1000,
                                         icon: "success"
                                     });
                                     location.reload();
                                 }else{
-                                    swal("User không tồn tại!", {
+                                    swal("Sorry, You are not authorized!", {
                                         buttons: false,
                                         timer: 1000,
                                         icon: "error"

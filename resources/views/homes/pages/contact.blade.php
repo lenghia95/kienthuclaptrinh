@@ -121,8 +121,13 @@
         <div class="fakeimg p-3 mt-2">
             <div class="newspaper-x-blog-sidebar">
                 <div class="widget widget_categories">
-                    <div class="widget-head">
+                    {{-- <div class="widget-head">
                         <h3 class="widget-title text-light p-2">Thông tin liên hệ </h3>
+                    </div> --}}
+                    <div class="box-title">
+                        <h2 class="title">
+                            <a href="javascript:void(0)">Thông tin liên hệ</a>
+                        </h2>
                     </div>
                     <div class="next-days mt-3 pl-2">
                         <p>Nếu thông tin bạn cần không được tìm thấy trong danh sách hỗ trợ, vui lòng liên hệ với chúng tôi thông qua:</p>

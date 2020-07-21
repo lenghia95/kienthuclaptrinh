@@ -42,17 +42,17 @@
                                 <li><a href="" target="_blank" class="export-selected">Selected rows</a></li>
                             </ul>
                         </div>
-
-                        <div class="btn-group pull-right" style="margin-right: 10px">
-                            <a href="" class="btn btn-sm btn-success" title="New" data-toggle="modal" data-target="#flipFlop">
-                                <i class="fa fa-save"></i><span class="hidden-xs">&nbsp;&nbsp;{{ config('admin.new')}}</span>
-                            </a>
-                        </div>
-
+                        @can (Auth::user()->can('create')) 
+                            <div class="btn-group pull-right" style="margin-right: 10px">
+                                <a href="" class="btn btn-sm btn-success" title="New" data-toggle="modal" data-target="#flipFlop">
+                                    <i class="fa fa-save"></i><span class="hidden-xs">&nbsp;&nbsp;{{ config('admin.new')}}</span>
+                                </a>
+                            </div>
+                        @endcan
                     </div>
                    
                     <span>
-                        <input type="checkbox" class="grid-select-all " />&nbsp;
+
                         <div class="btn-group">
                             <a class="btn btn-sm btn-default">&nbsp;<span class="hidden-xs">Action</span></a>
                             <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
@@ -60,114 +60,86 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#" class="grid-batch-0">Delete</a></li>
+                                <li><a href="javascript:void(0)" class="grid-batch-0">Delete</a></li>
+                                <li><a href="javascript:void(0)" data-key="active" class="grid-active">Active</a></li>
+                                <li><a href="javascript:void(0)" data-key="deactive" class="grid-active">Deactive</a></li>
                             </ul>
                         </div>
                     </span>
                 </div>
                 
                 <!-- /.box-header -->
-                <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                        <div class="row">
-                            <div class="box-body">
-                                <div class="col-sm-6">
-                                    <div class="dataTables_length" id="example_length">
-                                        <label>Show
-                                            <select name="item" class="form-control input-sm" onchange="if(this.value) window.location.href='?item='+this.value">
-                                                @foreach (config('admin.items') as $item)
-                                                    <option value="{{ $item }}" {{ (app('request')->get('item') == $item ) ? 'selected' : ''}}>{{ $item }}</option>
-                                                @endforeach
-                                            </select>
-                                            entries
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div id="example_filter" class="dataTables_filter">
-                                        <label>Search:
-                                            <input type="search" name="search" class="form-control input-sm search-post" placeholder="Nhập từ khóa tìm kiếm..." aria-controls="example">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="box-body">
-                                    <table id="" class="table table-hover table-striped table-bordered">
-                                        <thead>
-                                        <tr class="_table_title">
-                                            <th> </th>
-                                            <th>ID<a class="fa fa-fw fa-sort" href=""></a></th>
-                                            <th>{{ config('admin.title') }}</th>
-                                            <th>{{ config('admin.image') }}</th>
-                                            <th>{{ config('admin.category') }}</th>
-                                            <th>Author</th>
-                                            <th>{{ config('admin.status') }}</th>
-                                            <th>{{ config('admin.created_at') }}</th>
-                                            <th>{{ config('admin.action') }}</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody class="post-output">
-                                        @foreach($posts as $post)
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" class="minimal" /><br>
-                                                    <a href="#" class="fa fa-comments"></a>
-                                                </td>
-                                                <td>{{ $post->id }}</td>
-                                                <td>{{ $post->title }}</td>
-                                                <td>
-                                                    <img width="100" src="{{ asset($post->thumbnail) }}" class="img-thumbnail" title="{{ $post->title }}" />
-                                                </td>
-                                                <td>
-                                                    @php $Cat = new App\Models\PostCategory @endphp
-                                                    @foreach ($Cat->getCatsByPostId($post->id) as $cat)
-                                                        <a class="label label-info"> {{ $cat->name }} </a><br>
-                                                    @endforeach
-                                                </td>
-                                                <td>
-                                                    <a class="label label-warning">{{ $post->uName }}</a>
-                                                </td>
-                                                <td align="center">
-                                                    <input type="checkbox" {{ ($post->status === 1) ? 'checked' : '' }} data-toggle="toggle" data-size="xs" data-onstyle="primary" data-offstyle="warning" class="grid-switch-status" data-key="{{ $post->id }}" value="{{ ($post->status === 1) ? 1 : 0 }}">
-                                                </td>
-                                                <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
-                                                <td align="center">
-                                                    <a href="{{ route('listposts.edit',['id' => $post->id]) }}"><i class="fa fa-edit"></i></a>
-                                                    <a href="javascript:void(0)" data-id="{{ $post->id }}" class="grid-row-delete">
-                                                        <i class="fa fa-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="box-body">
-                                <div class="col-sm-5">
-                                    <div class="dataTables_info">
-                                        Showing
-                                        {{ ($posts->currentPage() * $posts->perPage()) - ($posts->perPage() - 1) }}
-                                        to
-                                        {{ ( $posts->currentPage() == $posts->lastPage() ) ? $posts->total() : $posts->currentPage() * $posts->perPage()  }}
-                                        of
-                                        {{ $posts->total() }}
-                                        entries
-                                    </div>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="dataTables_paginate">
-                                        {{ $posts->appends(Request::except('page'))->links() }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="box-body">
+                    <table id="example" class="table table-hover table-striped table-bordered">
+                        <thead>
+                        <tr class="_table_title">
+                            <th> <input type="checkbox" name="checkbox_post[]" class="grid-select-all " /></th>
+                            <th>ID</th>
+                            <th>{{ config('admin.title') }}</th>
+                            <th>{{ config('admin.image') }}</th>
+                            <th>{{ config('admin.category') }}</th>
+                            <th>Author</th>
+                            <th>{{ config('admin.status') }}</th>
+                            <th>{{ config('admin.date') }}</th>
+                            <th>{{ config('admin.action') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody class="post-output">
+                        @foreach($posts as $post)
+                            <tr>
+                                <td>
+                                    @if(Auth::user()->id == $post->author || Auth::user()->permission === 'Supper_admin')
+                                        <input type="checkbox" name="checkbox_post[]" value="{{ $post->id }}" class="minimal" /><br>
+                                    @endif
+                                    <a href="#" class="fa fa-comments"></a>
+                                </td>
+                                <td>{{ $post->id }}</td>
+                                <td>{{ $post->title }}</td>
+                                <td>
+                                    <img width="100" src="{{ asset($post->thumbnail) }}" class="img-thumbnail" title="{{ $post->title }}" />
+                                </td>
+                                <td>
+                                    @php $Cat = new App\Models\PostCategory @endphp
+                                    @foreach ($Cat->getCatsByPostId($post->id) as $cat)
+                                        <a class="label label-info"> {{ $cat->name }} </a><br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a class="label label-warning">{{ $post->uName }}</a>
+                                </td>
+                                <td align="center">
+                                    @if(Auth::user()->id == $post->author || Auth::user()->permission === 'Supper_admin')
+                                        <input type="checkbox" {{ ($post->status === 1) ? 'checked' : '' }} data-toggle="toggle" data-size="xs" data-onstyle="primary" data-offstyle="warning" class="grid-switch-status" data-key="{{ $post->id }}" value="{{ ($post->status === 1) ? 1 : 0 }}">
+                                    @endif
+                                </td>
+                                <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
+                                <td align="center">
+                                    @if(Auth::user()->id == $post->author || Auth::user()->permission === 'Supper_admin')
+                                        <a href="{{ route('listposts.edit',['id' => $post->id]) }}"><i class="fa fa-edit"></i></a>
+                                        <a href="javascript:void(0)" data-id="{{ $post->id }}" class="grid-row-delete">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <thead>
+                        <tr class="_table_title">
+                            <th> <input type="checkbox" name="checkbox_post[]" class="grid-select-all " /></th>
+                            <th>ID</th>
+                            <th>{{ config('admin.title') }}</th>
+                            <th>{{ config('admin.image') }}</th>
+                            <th>{{ config('admin.category') }}</th>
+                            <th>Author</th>
+                            <th>{{ config('admin.status') }}</th>
+                            <th>{{ config('admin.date') }}</th>
+                            <th>{{ config('admin.action') }}</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                           
 
                 <!-- The modal -->
                 <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" >
@@ -177,7 +149,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                <h4 class="modal-title" id="modalLabel">Add Pages</h4>
+                                <h4 class="modal-title" id="modalLabel">Add Post</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="row box-body">
@@ -296,9 +268,9 @@
 @push('script')
     @include('admins.posts.validate')
     <script type="text/javascript">
-
+    
         $(document).ready(function(){
-            CKEDITOR.replace('content');
+            // CKEDITOR.replace('content');
             $('.grid-select-all').iCheck({checkboxClass:'icheckbox_minimal-red'});
             $('.grid-select-all').on('ifChanged', function(event) {
                 if (this.checked) {
@@ -307,29 +279,15 @@
                     $('.minimal').iCheck('uncheck');
                 }
             });
-
-            $(document).on('keyup', '.search-post', function(){
-               var keywork  = $(this).val();
-               $.ajax({
-                   type: "get",
-                   url: "{{ url('/admin/ajax/search-posts') }}",
-                   data: { keywork:keywork},
-                   success: function (data) {
-                    //    console.log(data); return false;
-                       $('.post-output').html(data);
-                   }
-               });
-            });
-
             
             // ajax delete
             $('.grid-row-delete').unbind('click').click(function() {
                 var id = $(this).data('id');
                 swal({
-                    title: "Bạn có chắc chắn muốn xóa ?",
+                    title: "You definitely want to delete?",
                     icon:'error',
                     dangerMode: true,
-                    buttons: ["Đóng", "Xác nhận"],
+                    buttons: ["Cancel", "Yes"],
 
                 }).then((willDelete) => {
                     if (willDelete) {
@@ -341,20 +299,28 @@
                                 _token: "{{ csrf_token() }}",
                             },
                             success: function(data) {
-                                location.reload();
+                                if(data == 'true'){
+                                    swal("Delete success!", {
+                                        buttons: false,
+                                        timer: 1000,
+                                        icon: "success"
+                                    });
+                                    location.reload();
+                                }else{
+                                    swal("Sorry, You are not authorized!", {
+                                        buttons: false,
+                                        timer: 1000,
+                                        icon: "error"
+                                    });
+                                }
                             }
-                        });
-                        swal("Bạn đã xó thành công!", {
-                            buttons: false,
-                            timer: 1000,
-                            icon: "success"
                         });
 
                     }
                 });
             });
 
-
+            //update status
             $(document).on('change', '.grid-switch-status', function(){
                 var id = $(this).data('key');
                 $.ajax({
@@ -370,6 +336,114 @@
                 });
             });
 
-        })
+            //delete multi post
+            $(document).on('click', '.grid-batch-0', function(){
+                var arPost = [];
+                $('.minimal:checkbox:checked').each(function(i){
+                    arPost[i] = $(this).val();
+                });
+                if(arPost == ''){
+                    swal({
+                        title: "Sorry, you have not selected any!",
+                        icon:'error',
+                        dangerMode: true,
+                        buttons: "Yes",
+                    })
+                    return false;
+                }
+                swal({
+                    title: "You definitely want to delete?",
+                    icon:'error',
+                    dangerMode: true,
+                    buttons: ["Cancel", "Yes"],
+
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "{{ url('/admin/ajax/checkbox') }}",
+                            type: "POST",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                'arPost' : arPost
+                            },
+                            success: function (data) {
+                                if(data == 'true'){
+                                    swal("Delete success!", {
+                                        buttons: false,
+                                        timer: 1000,
+                                        icon: "success"
+                                    });
+                                    location.reload();
+                                }else{
+                                    swal("Sorry, You are not authorized!", {
+                                        buttons: false,
+                                        timer: 1000,
+                                        icon: "error"
+                                    });
+                                }
+                            }
+                        });
+
+                    }
+                });
+            
+            });
+
+            // update status multi
+            $(document).on('click', '.grid-active', function(){
+                var action = $(this).data('key');
+                var arPost = [];
+                $('.minimal:checkbox:checked').each(function(i){
+                    arPost[i] = $(this).val();
+                });
+                if(arPost == ''){
+                    swal({
+                        title: "Sorry, you have not selected any",
+                        icon:'error',
+                        dangerMode: true,
+                        buttons: "Yes",
+                    })
+                    return false;
+                }
+                swal({
+                    title: "You want to update status?",
+                    icon:'warning',
+                    dangerMode: true,
+                    buttons: ["Cancel", "Yes"],
+
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "{{ url('/admin/ajax/checkbox-status') }}",
+                            type: "POST",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                'arPost' : arPost,
+                                'action' : action,
+                            },
+                            success: function (data) {
+                                
+                                if(data == 'true'){
+                                    swal("Update success!", {
+                                        buttons: false,
+                                        timer: 1000,
+                                        icon: "success"
+                                    });
+                                    location.reload();
+                                }else{
+                                    swal("Sorry, There was an error", {
+                                        icon:'warning',
+                                        dangerMode: true,
+                                        buttons: "Oke",
+                                    });
+                                }
+                            }
+                        });
+
+                    }
+                });
+            
+            });
+        });
     </script>
 @endpush

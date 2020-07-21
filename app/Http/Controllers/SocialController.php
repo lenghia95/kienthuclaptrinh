@@ -1,34 +1,49 @@
 <?php
+ 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use Validator,Redirect,Response,File;
-use Socialite;
+use Auth;
 use App\User;
+use Socialite;
+use Cookie;
+
 class SocialController extends Controller
 {
-    public function redirect($provider)
+    public function redirectToProvider()
     {
-        return Socialite::driver($provider)->redirect();
+        return Socialite::driver('facebook')->redirect();
     }
-
-    public function callback($provider)
+ 
+    /**
+     * Obtain the user information from facebook.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
     {
-        $getInfo = Socialite::driver($provider)->user(); 
-        $user = $this->createUser($getInfo,$provider); 
-        auth()->login($user); 
-        return redirect()->to('/home');
+        $user = Socialite::driver('facebook')->user();
+ 
+        $authUser = $this->findOrCreateUser($user);
+        
+        // Chỗ này để check xem nó có chạy hay không
+        // dd($user);
+ 
+        Auth::login($authUser, true);
+        $back = ( request()->cookie('back_load') ) ?  request()->cookie('back_load') : request()->cookie('back');
+        return redirect()->intended( $back );
     }
-    
-    function createUser($getInfo,$provider){
-        $user = User::where('provider_id', $getInfo->id)->first();
-        if (!$user) {
-            $user = User::create([
-                'name'     => $getInfo->name,
-                'email'    => $getInfo->email,
-                'provider' => $provider,
-                'provider_id' => $getInfo->id
-            ]);
-        }
-        return $user;
+ 
+    private function findOrCreateUser($facebookUser){
+        return  User::updateOrCreate(
+            ['provider_id' => $facebookUser->id],
+            [
+                'username' => $facebookUser->name,
+                'password' => $facebookUser->token,
+                'email' => $facebookUser->email,
+                'provider_id' => $facebookUser->id,
+                'provider' => $facebookUser->id,
+                'status' => 1,
+            ]
+        );
+        
     }
 }

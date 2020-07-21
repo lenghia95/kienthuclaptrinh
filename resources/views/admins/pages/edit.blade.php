@@ -82,7 +82,7 @@
                                 <div class="form-group">
                                     <label for="content" class="col-sm-2  control-label">Nội dung</label>
                                     <div class="col-sm-8">
-                                        <textarea class="form-control " id="content" name="content" placeholder="Nhập nội dung">{!! $page->content !!} </textarea>
+                                        <textarea class="form-control " id="_content" name="content" placeholder="Nhập nội dung">{!! $page->content !!} </textarea>
                                         <label for="content" generated="true" class="error"></label>
                                     </div>
                                 </div>
@@ -145,7 +145,6 @@
     
     <script type="text/javascript">
         $(document).ready(function(){
-            CKEDITOR.replace( 'content' );
             $("#valiForm").validate({
                 
             });

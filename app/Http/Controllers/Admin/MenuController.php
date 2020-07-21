@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\MenuRequest;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\Menu;
 
@@ -19,6 +20,9 @@ class MenuController extends Controller
     protected $title = 'Menus';
     public function index()
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         return view('admins.menus.index',[
             'title' => $this->title
         ]);
@@ -42,6 +46,9 @@ class MenuController extends Controller
      */
     public function store(MenuRequest $request)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $stores = new Menu;
         $stores->title      = strip_tags($request->title);
         $stores->icon       = strip_tags($request->icon);
@@ -84,6 +91,9 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $updates = Menu::getMenu($id);
         if( !$updates ){
             return redirect()->route('menus.index')->with('failed', config('admin.failed'));

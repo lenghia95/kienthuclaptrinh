@@ -7,10 +7,16 @@
         overflow-x: hidden;
         overflow-y: auto;
     }
+   
+   
 </style>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
+    <style>
+        #flipFlop {
+            overflow: auto !important;
+        }
+    </style>
     @include('admins.layouts.header')
     <!-- Left side column. contains the logo and sidebar -->
 

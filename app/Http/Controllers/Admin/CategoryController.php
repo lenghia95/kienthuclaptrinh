@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\CategoryRequest;
+use Illuminate\Support\Facades\Gate;
 use Session;
 
 use App\Models\Category;
@@ -29,6 +30,9 @@ class CategoryController extends Controller
     protected $title = 'Categories';
     public function index()
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         return view('admins.categories.index',[
             'title'         => $this->title,
             'categories'    => $this->menu->getLinks(),
@@ -54,6 +58,9 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $this->menu->name        = strip_tags($request->name);
         $this->menu->slug        = strip_tags($request->slug);
         $this->menu->parent      = strip_tags($request->parent);
@@ -82,6 +89,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $category = $this->menu->getItem($id);
         if( !$category ){
             return view('admins.errors.404');
@@ -103,6 +113,9 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $stores = $this->menu->getItem($id);
         $stores->name        = $request->name;
         $stores->slug        = $request->slug;

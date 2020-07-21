@@ -36,7 +36,21 @@
                             </ul>
                         </div>
                     </div>
-
+                    <span>
+                            <input type="checkbox" name="checkbox_post[]" class="grid-select-all " />&nbsp;
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-default">&nbsp;<span class="hidden-xs">Action</span></a>
+                                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="javascript:void(0)" class="grid-batch-0">Delete</a></li>
+                                    <li><a href="javascript:void(0)" data-key="active" class="grid-active">Active</a></li>
+                                    <li><a href="javascript:void(0)" data-key="deactive" class="grid-active">Deactive</a></li>
+                                </ul>
+                            </div>
+                        </span>
                 </div>
                 <div class="box-header with-border hide" id="filter-box">
                     <form action="" class="form-horizontal" pjax-container="" method="get">

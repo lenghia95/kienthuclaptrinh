@@ -24,12 +24,14 @@ class PostController extends PageController
         }
         return view('homes.posts.category',[
             'posts' => Post::getPostsByCat($slug),
-            'category'  => $category
+            'category'  => $category,
+            'pagetitle'  => 'Học '.$category->name.' - Lập trình '.$category->name.' - Tự học '.$category->name
         ]);
     }
 
     public function post($slug)
     {
+        
         $post = Post::getPost($slug);
         if( !$post ){
             return view('homes.errors.404');
@@ -37,11 +39,14 @@ class PostController extends PageController
         $this->removeSessionViews($post);
         $this->viewCount($post);
 
+        $postsRelate = Post::getPostsRelate($post->slug, $post->cSlug);
         $comment = new Comment;
         $comments = $comment->getCommentsByPostIdParent($post->id);
         return view('homes.posts.post',[
-            'post'      => $post,
-            'comments'  => $comments,
+            'post'          => $post,
+            'comments'      => $comments,
+            'pagetitle'     => $post->title,
+            'postsRelate'   => $postsRelate
         ]);
     }
     

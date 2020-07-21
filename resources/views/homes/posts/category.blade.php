@@ -50,7 +50,6 @@
                                 </h5>
                                 <div class="newspaper-x-post-meta">
                                     <div>
-
                                         <div class="mom-post-meta bp-meta">
                                             <span class="author vcard">Đăng bởi: {{ $post->uName }}</span>
                                             <span>Ngày:
@@ -60,11 +59,10 @@
                                                     </span>
                                         </div>
                                         @foreach (App\Models\PostCategory::getCatsByPostId($post->id) as $cat)
-                                            <a href="{{ url('category/'.$cat->slug) }}"><span class="badge badge-info"> {{ $cat->name }} </span></a>
+                                            <a href="{{ url('category/'.$cat->slug) }}"><span class="badge badge-warning"> {{ $cat->name }} </span></a>
                                         @endforeach
-
                                     </div>
-                                    <p>{!! str_limit($post->content,150) !!}</p>
+                                    <p>{!! str_limit($post->description,120) !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +70,8 @@
                 @endforeach
             @endif
             <ul class="pagination mt-2">
-                {{ $posts->appends(Request::except('page'))->links() }}
+                {{ $posts->appends(Request::except('page'))->onEachSide(3)->links() }}
+                {{-- {{ $posts->onEachSide(3)->links() }} --}}
             </ul>
         </div>
         <!-- main-content -->

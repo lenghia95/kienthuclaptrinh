@@ -3,6 +3,7 @@
 @section('content')
 <meta property="og:url"           content="{{ Request::fullUrl() }}" />
 <meta property="og:type"          content="website" />
+<meta property="og:locale" content="vi_vn" />
 <meta property="og:title"         content="{{ $post->title }}" />
 <meta property="og:description"   content="{{ $post->description }}" />
 <meta property="og:image"         content="{{ asset($post->thumbnail) }}" />
@@ -59,7 +60,7 @@
                                         </span>
                                         <span class="mr-2"><i class="fa fa-eye"></i> {{ $post->views }}</span>
                                         <span class="mr-2"><i class="fa fa-comments"></i> {{ $post->comments->count() }}</span>
-                                        <span> <i class="fa fa-tags"></i> </span><a href="{{ url('category/'.$post->cSlug) }}" class="badge badge-info">{{ $post->cName }}</a>
+                                        <span> <i class="fa fa-tags"></i> </span><a href="{{ url('category/'.$post->cSlug) }}" class="badge badge-warning" style="color:#fff">{{ $post->cName }}</a>
                                     </div>
                                 </div>
                                 
@@ -67,6 +68,7 @@
                                 <!-- post detail -->
                                     <section class="post-content"> 
                                         {!! $post->content !!}
+                                       
                                     </section>
                                 <!-- post detail -->
                             </div>
@@ -78,7 +80,7 @@
                 <!-- tags -->
                     <div class="fakeimg p-2 mt-2">
                         <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                 <h6 class="m-0"><i class="fa fa-tags"></i>Tags:
                                     <span> 
                                         @foreach (App\Models\PostCategory::getCatsByPostId($post->id) as $cat)
@@ -87,17 +89,15 @@
                                     </span>
                                 </h6>
                             </div>
-                            <div class="col-md-6">
-                                <div class="text-right">
-                                        <div class="fb-share-button" 
-                                        data-href="{{ Request::url() }}" 
-                                        data-layout="button_count">
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     
+                    <div class="icon-bar">
+                        {!! Share::page(Request::fullUrl(), null, ['class' => 'facebook'])->facebook() !!}
+                        {!! Share::page(Request::fullUrl(), null, ['class' => 'twitter'])->twitter() !!}
+                        {!! Share::page(Request::fullUrl(), null, ['class' => 'google'])->googlePlus() !!}
+                        {!! Share::page(Request::fullUrl(), null, ['class' => 'linkedin'])->linkedin() !!}
+                    </div>
                     
                 <!-- tags -->
 
@@ -254,7 +254,46 @@
         @include('homes.layouts.fanpage')
 
     </div>
-
+    <div class="col-md-12">
+        <div class="fakeimg p-1 mt-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box-title">
+                        <h2 class="title">
+                            <a href="/search/label/Break?&amp;max-results=10">Bài viết liên quan</a>
+                        </h2>
+                    </div>
+                </div>
+                
+                <div class="slider-relate">
+                    @foreach ($postsRelate as $post)
+                    <div class="col-md-3 blogspot">
+                        <div class="newspaper new-slider">
+                            <a href="{{ url('post/'.$post->slug) }}">
+                                <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->title }}">
+                            </a>
+                            <div class="first-tag">
+                                <a class="badge badge-warning" href="{{ url('category/'.$post->cSlug) }}">{{ $post->cName }}</a>
+                            </div>
+                            <div class="bf-content-br"></div>
+                            <div class="bf-content">
+                                <h5 class="recent-title">
+                                    <a href="{{ url('post/'.$post->slug) }}">{{ $post->title }}</a>
+                                </h5>
+                                <div class="mom-post-meta mom-w-meta">
+                                    <span class="entry-date"><i class="fa fa-clock-o"></i> {{ date('d/m/Y', strtotime($post->cName) )  }}</span> -
+                                    <span class="entry-date"><i class="fa fa-eye"></i> {{ $post->views }} - </span>
+                                    <span class="entry-date"><i class="fa fa-comments"></i> {{ $post->comments->count() }} </span>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @push('script')
@@ -403,6 +442,35 @@
                 }
             });
 
+            $('.slider-relate').slick({
+                autoplay:true,
+                autoplaySpeed:1500,
+                prevArrow: false,
+                nextArrow: false,
+                slidesToShow: 4, 
+                slidesToScroll: 1,
+                responsive: 
+                [   
+                    {
+                        breakpoint: 992, settings: {
+                            slidesToShow: 3, slidesToScroll: 1
+                        }
+                        
+                    },{
+                        breakpoint: 768, settings: {
+                            slidesToShow: 2, slidesToScroll: 1
+                        }
+                        
+                    },
+                    {
+                        breakpoint: 422, settings: {
+                            slidesToShow: 1, slidesToScroll: 1
+                        }
+                        
+                    }
+                ]
+            });
+            
         });
     </script>
 @endpush

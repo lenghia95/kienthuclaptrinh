@@ -2,26 +2,16 @@
 <a href="javascript:void(0)" id="goTop"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 <script src="{{ asset('homes/js/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ asset('js/share.js') }}"></script>
 <script src="{{ asset('homes/js/popper.min.js') }}"></script>
 <script src="{{ asset('homes/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('homes/js/jquery-validation/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('homes/navbar/js/bootnavbar.js') }}"></script>
+<script src="{{ asset('homes/js/slick.min.js') }}"></script>
+<script src="{{ asset('homes/js/jquery-custom.js') }}"></script>
 @stack('script')
 
 @include('homes.ajax.validator')
-
-<script>
-    $(function(){
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 800) $('#goTop').fadeIn();
-            else $('#goTop').fadeOut();
-        });
-
-        $('#goTop').click(function () {
-            $('body,html').animate({scrollTop: 0}, 'slow');
-        });
-    });
-</script>
 
 <script type="text/javascript">
 
@@ -38,11 +28,6 @@
                     $(this).removeClass("show");
                 });
             }
-        });
-    
-        $('.navbar-toggler').on('click', function(){
-           // $('#main_navbar .shows').fadeToggle();
-            $('.navbar-expand-sm .navbar-collapse').css('display','block');
         });
         
     });

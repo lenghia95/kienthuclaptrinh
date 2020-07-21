@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Response;
 use App\Http\Requests\PostRequest;
 use App\Helpers\articleService;
 use Session;
+use  Auth;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\PostCategory;
 use App\Models\Category;
@@ -21,6 +23,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function __construct()
     {
         $this->post = new Post;
@@ -33,9 +36,10 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
+        
         return view('admins.posts.index',[
             'title'         => $this->title,
-            'posts'         => $this->post->getItems( $this->item($request->item) ),
+            'posts'         => $this->post->getItems(  ),
             'categories'    => Category::getListMenuByGroup()
         ]);                 
     }
@@ -62,22 +66,26 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request)
-    {
+    {   
+        if (! Auth::user()->can('create')) {
+            return redirect()->route('listposts.index')->with('failed','Sorry, You are not authorized');
+        }
         $uploadFile = $this->articleService->uploadFile('thumbnail','uploads/posts/');
         $post_id = Post::create([
             'title'             => strip_tags($request->title),
             'slug'              => strip_tags($request->slug),
-            'status'            => ($request->status == 'on') ? 1:0,
-            'content'           => strip_tags($request->content),
+            'status'            => ($request->status == 1) ? 1 : 0,
+            'content'           => $request->content,
             'seo_title'         => strip_tags($request->seo_title),
             'seo_keywords'      => strip_tags($request->seo_keywords),
             'seo_description'   => strip_tags($request->seo_description),
             'description'       => strip_tags($request->description),
+            'author'            => Auth::id(),
             'thumbnail'         => $uploadFile
         ])->id;
         if($post_id){
             $this->postCategory->updateOrInsert($request->category, $post_id);
-            return redirect()->back()->with('update_succeeded',config('admin.update_succeeded'));
+            return redirect()->back()->with('save_succeeded',config('admin.save_succeeded'));
         }
         return redirect()->back()->with('failed',config('admin.dailed'));
 
@@ -106,6 +114,9 @@ class PostController extends Controller
         if( !$post ){
             return view('admins.errors.404');
         }
+        if (! Auth::user()->can('update', $post)) {
+            return redirect()->route('listposts.index')->with('failed','Sorry, You are not authorized');
+        }
         return view('admins.posts.edit',[
             'post'          => $post,
             'title'         => $this->title,
@@ -124,7 +135,11 @@ class PostController extends Controller
     {
        
         $update = $this->post->getItem($id);
-        
+
+        if (! Auth::user()->can('update', $update)) {
+            return redirect()->route('listposts.index')->with('failed','Sorry, You are not authorized');
+        }
+
         if($update){
             $uploadFile = $this->articleService->uploadFile('thumbnail','uploads/posts/');
             if($uploadFile != ''){
@@ -132,8 +147,8 @@ class PostController extends Controller
             }
             $update->title              = strip_tags($request->title);
             $update->slug               = strip_tags($request->slug);
-            $update->status             = ($request->status == 'on') ? 1 : 0;
-            $update->content            = strip_tags($request->content);
+            $update->status             = ($request->status == 1) ? 1 : 0;
+            $update->content            = $request->content;
             $update->seo_title          = strip_tags($request->seo_title);
             $update->seo_keywords       = strip_tags($request->seo_keywords);
             $update->seo_description    = strip_tags($request->seo_description);
@@ -161,7 +176,9 @@ class PostController extends Controller
         if( ! $post){
             return redirect()->route('listposts.edit',[$id])->with( 'failed', config('admin.failed') );
         }
-
+        if (! Auth::user()->can('delete', $post)) {
+            return redirect()->route('listposts.index')->with('failed','Sorry, You are not authorized');
+        }
         $this->postCategory->delItemByPost($post->id);
         $comment = new Comment;
         $comment->delCommentsByPostId($post->id);
@@ -173,7 +190,31 @@ class PostController extends Controller
 
     }
 
+   
     #======================Ajax====================#
+    public function ajaxCheckbox(Request $request)
+    {
+        if( count($request->arPost) > 0){
+            foreach($request->arPost as $id){
+                $this->ajaxDel($id);
+            }
+            return 'true';
+        }
+        return 'false';
+    }
+
+    public function ajaxCheckboxStatus(Request $request)
+    {
+        $action = $request->action;
+        $status = ($action == 'active') ? 1 : 0;
+        if(count($request->arPost) > 0){
+            $update = Post::whereIn('id', $request->arPost)->update(['status' => $status]);
+            return 'true';
+        }
+        return 'false';
+    }
+    
+    
     public function ajaxCheckSlug(Request $request)
     {
         $id = strip_tags($request->id);
@@ -192,27 +233,21 @@ class PostController extends Controller
     public function  ajaxDel($id)
     {
         $post = $this->post->getItem($id);
+        
         if($post){
             $this->postCategory->delItemByPost($id);
             $del = $post->delete();
             if($del){
                 $this->articleService->delFile($post->thumbnail);
-                return config('admin.delete_succeeded');
+                return 'true';
             }
         }
-        return config('admin.failed');
+        return 'false';
     }
 
     public function ajaxStatus($id)
     {
         return $this->post->updateStatus($id);
     }
-
-    public function ajaxSearch(Request $request)
-    {
-        $posts = $this->post->search(strip_tags($request->keywork));
-        return view('admins.posts.search',compact('posts'));
-    }
-
     
 }

@@ -62,7 +62,12 @@
 @stack('script')
 <script type="text/javascript">
     $(function () {
-
+        CKEDITOR.replace('content',{
+            fullPage: true,
+            allowedContent: true,
+            autoGrow_onStartup: true,
+            enterMode: CKEDITOR.ENTER_BR
+        });
         $('.minimal').iCheck({
             checkboxClass: 'icheckbox_minimal-red'
         });

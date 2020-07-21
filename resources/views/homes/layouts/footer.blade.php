@@ -9,14 +9,14 @@
 
                     <!-- Content -->
                     <h6 class="text-uppercase font-weight-bold text-light">Về chúng tôi</h6>
-                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block " style="width: 60px;">
+                    <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block " style="width: 60px;">
                     <p class="text-light">{{ $Setting['company_about'] }}</p>
 
                 </div>
                 <!-- Grid column -->
 
                 <!-- Grid column -->
-                <div class="col-md-3 col-lg-3 col-xl-3 mb-4 infomation list-category">
+                <div class="col-md-4 col-lg-4 col-xl-4 mb-4 infomation list-category">
 
                     <!-- Links -->
                     <h6 class="text-uppercase font-weight-bold text-light">Tin mới</h6>
@@ -31,7 +31,7 @@
                 <!-- Grid column -->
 
                 <!-- Grid column -->
-                <div class="col-md-3 col-lg-3 col-xl-3 mb-4 infomation list-category">
+                <div class="col-md-2 col-lg-2 col-xl-2 mb-4 infomation list-category">
 
                     <!-- Links -->
                     <h6 class="text-uppercase font-weight-bold text-light">Danh mục</h6>
@@ -64,9 +64,9 @@
                         <i class="fa fa-print mr-3"></i>{{ $Setting['company_hotline'] }}
                     </p>
                     <p class="text-light">
-                        <a href="{{ $Setting['facebook'] }}" class="facebook"><i class="fa fa-facebook-official"></i></a>
-                        <a href="{{ $Setting['youtube'] }}" class="youtube"><i class="fa fa-youtube"></i></a>
-                        <a href="{{ $Setting['googleplus'] }}" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                        <a target="_blank" href="{{ $Setting['facebook'] }}" class="facebook"><i class="fa fa-facebook-official"></i></a>
+                        <a target="_blank" href="{{ $Setting['youtube'] }}" class="youtube"><i class="fa fa-youtube"></i></a>
+                        <a target="_blank" href="{{ $Setting['googleplus'] }}" class="google-plus"><i class="fa fa-google-plus"></i></a>
                     </p>
 
                 </div>
@@ -81,7 +81,6 @@
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
         <span class="text-light">{{ $Setting['copyright'] }}</span>
-        {{--<a href=""> MDBootstrap.com</a>--}}
     </div>
     <!-- Copyright -->
 

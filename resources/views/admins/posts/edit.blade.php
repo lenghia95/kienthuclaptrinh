@@ -17,6 +17,7 @@
             <li>
                 {{ config('admin.edit') }}
             </li>
+           
         </ol>
 
         <!-- breadcrumb end -->
@@ -80,8 +81,8 @@
 
                                                 <div class="form-group">
                                                     <label for="status" class="control-label">{{ config('admin.status') }}:</label>
-                                                    <input type="checkbox" {{ ($post->status === 1) ? 'checked' : '' }} data-toggle="toggle" data-size="xs" data-onstyle="primary" data-offstyle="warning" class="edit-status" value="{{ ($post->status === 1) ? 1 : 0 }}">
-                                                    <input type="hidden" name="status" value="{{ ($post->status === 1) ? 1 : 0 }}">
+                                                    <input type="checkbox" {{ ($post->status === 1) ? 'checked' : '' }} name="status" data-toggle="toggle" data-size="xs" data-onstyle="primary" data-offstyle="warning" class="edit-status" value="{{ ($post->status === 1) ? 1 : 0 }}">
+                                                    {{-- <input type="hidden" c value="{{ ($post->status === 1) ? 1 : 0 }}"> --}}
                                                 </div>
                                                 
                                                 <div class="form-group">
@@ -160,9 +161,5 @@
 @stop
 @push('script')
     @include('admins.posts.validate')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            CKEDITOR.replace('content');
-        });
-    </script>
+    
 @endpush

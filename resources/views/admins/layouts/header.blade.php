@@ -246,7 +246,7 @@
                                     <a href="{{ route('configs.index') }}"><i class="fa fa-cogs" aria-hidden="true"></i> Configs</a>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <a href="#"><i class="fa fa-code"></i> Editor</a>
+                                    <a href="{{ url('/') }}"><i class="fa fa-eye"></i> Web</a>
                                 </div>
                             </div>
                             <!-- /.row -->

@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="{{ asset('homes/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('homes/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('homes/css/responsive.css') }}">
-
+<link rel="stylesheet" href="{{ asset('homes/css/post.css') }}">
+<link rel="stylesheet" href="{{ asset('homes/css/slick.css') }}">
+<link rel="stylesheet" href="{{ asset('homes/css/slick-theme.css') }}">
+<link href="https://fonts.googleapis.com/css?family=Oswald|Quicksand|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ asset('homes/navbar/css/bootnavbar.css') }}">
 <link href="{{ asset($Setting['favicon']) }}" rel="shortcut icon" type="image/x-icon">

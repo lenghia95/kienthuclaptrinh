@@ -1,11 +1,12 @@
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top" id="main_navbar">
-    <div class="container pl-0">
+    <div class="container pl-0" style="position: relative;">
         <a class="navbar-brand" href="{{ url('/') }}"><i class="fa fa-home"></i></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        {{-- <button class="btn btn-warning"> <i class="fa fa-search"></i></button> --}}
         <div class="collapse navbar-collapse shows" id="navbarSupportedContent" >
+               
             <ul class="navbar-nav mr-auto navbar-menu">
                 @foreach( App\Models\Category::getCategories() as $category)
                     <li class="nav-item main-menu">
@@ -155,8 +156,14 @@
 
 <div class="container">
     <div class="row small-row">
+        <div class="col-md-12 p-0">
+
+            @include('homes.layouts.stick')
+
+        </div>
+
         <div class="col-md-12 p-0 mt-4">
-            <form action="{{ url('/') }}" method="get">
+            <form action="{{ url('/search') }}" method="get">
                 <div class="input-group mb-3">
                     <input type="search"  name="s" placeholder="Gõ từ khóa và Enter...!">
                     <input type="submit" class="d-none" />

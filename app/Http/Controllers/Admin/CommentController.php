@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
+
 use App\Models\Comment;
 
 class CommentController extends Controller
@@ -16,6 +18,9 @@ class CommentController extends Controller
     protected $title = 'Comment';
     public function index()
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         return view('admins.comments.index',[
             'comments' => Comment::getItems(),
             'title'    => $this->title
@@ -51,6 +56,9 @@ class CommentController extends Controller
      */
     public function show($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $obj = new Comment;
         return view('admins.comments.show',[
             'comment'   => $obj->getItem($id),
@@ -89,6 +97,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $obj = new Comment;
         $delItem = $obj->delComments($id);
         if($delItem){

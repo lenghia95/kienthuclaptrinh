@@ -12,8 +12,8 @@ Route::pattern('slug','(.*)');
 |
 */
 
-
 Route::get('/', 'PageController@index');
+Route::get('/search', 'PageController@search');
 Route::get('/about', 'PageController@about');
 Route::get('/contact', 'PageController@contact');
 Route::post('/contact', 'PageController@postContact');
@@ -35,7 +35,7 @@ Route::get('admin/logout', 'Auth\LoginController@logout');
 /* ================== Login Account ================== */
 Route::get('login', 'PageController@login');
 Route::post('login', 'PageController@postLogin');
-Route::get('logout', 'PageController@logout');
+Route::get('logout', 'PageController@logout')->name('logout');
 Route::post('register', 'Auth\LoginController@postRegister');
 Route::get('ajax/unique-email', 'Auth\LoginController@ajaxUniqueEmail');
 
@@ -44,5 +44,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('/callback/{provider}', 'SocialController@callback');
+
+Route::get('auth/facebook', 'SocialController@redirectToProvider')->name('facebook.login') ;
+Route::get('auth/facebook/callback', 'SocialController@handleProviderCallback');
+
+
+
+#=======================Curl===================#
+Route::get('curl/chung-index', 'Curl\ChungController@index');
+Route::get('curl/chung-posts', 'Curl\ChungController@posts');

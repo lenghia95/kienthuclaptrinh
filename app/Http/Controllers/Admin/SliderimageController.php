@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SliderimageRequest;
 use App\Helpers\articleService;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\Sliderimage;
 use App\Models\Slider;
@@ -25,6 +26,9 @@ class SliderimageController extends Controller
     }
     public function index()
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         return view('admins.sliderimages.index',[
             'sliderimages' => Sliderimage::getItems(),
             'sliders' => Slider::getItems(),
@@ -50,6 +54,9 @@ class SliderimageController extends Controller
      */
     public function store(SliderimageRequest $request)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $uploadFile = $this->articleService->uploadFile('image','uploads/sliders/');
         $stores = new Sliderimage;
         $stores->title      = $request->title;
@@ -80,6 +87,9 @@ class SliderimageController extends Controller
      */
     public function edit($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $sliderimage = Sliderimage::getItem($id);
         if( ! $sliderimage ){
             return view('admins.errors.404');
@@ -100,6 +110,9 @@ class SliderimageController extends Controller
      */
     public function update(SliderimageRequest $request, $id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $update = Sliderimage::getItem($id);
         if($update){
             $uploadFile = $this->articleService->uploadFile('image','uploads/sliders/');
@@ -124,6 +137,9 @@ class SliderimageController extends Controller
      */
     public function destroy($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $sliderImage = Sliderimage::getItem($id);
         if( !$sliderImage ){
             return redirect()->route('sliderimages.index')->with('failed',config('admin.failed'));

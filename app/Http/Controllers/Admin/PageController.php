@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-// use App\Http\Requests\RePage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
+
 use App\Models\Page;
 use Session;
 
@@ -18,6 +19,9 @@ class PageController extends Controller
     protected $title = 'Pages';
     public function index()
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $page = new Page;
         return view('admins.pages.index',[
             'title'     => $this->title,

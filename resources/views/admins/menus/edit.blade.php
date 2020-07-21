@@ -53,7 +53,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">{{ config('admin.close') }}</button>
-        <input type="{{ config('admin.submit') }}" class="btn btn-success" />
+        <input type="submit" value="{{ config('admin.submit') }}" class="btn btn-success" />
     </div>
 </form>
 <script type="text/javascript">

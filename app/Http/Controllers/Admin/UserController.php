@@ -7,9 +7,13 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use Session;
+use Auth;
 use App\Helpers\articleService;
 
 use App\Models\User;
+use App\Models\Role;
+use App\Models\RoleUser;
+
 
 class UserController extends Controller
 {
@@ -26,9 +30,9 @@ class UserController extends Controller
     }
     public function index()
     {
-
         return view('admins.users.index',[
             'users' => $this->user->getItems(),
+            'roles' => Role::getItems(),
             'title' => $this->title,
         ]);
     }
@@ -51,18 +55,27 @@ class UserController extends Controller
      */
 
     public function store(UserRequest $request)
-    {
+    {   
+        if (! Auth::user()->can('create')) {
+            return redirect()->route('users.index')->with('failed','Sorry, You are not authorized');
+        }
         $uploadFile = $this->articleService->uploadFile('avatar','uploads/users/');
-        $stores = new User;
-        $stores->username       = strip_tags($request->username);
-        $stores->email          = strip_tags($request->email);
-        $stores->password       = bcrypt($request->password);
-        $stores->fullname       = strip_tags($request->fullname);
-        $stores->remember_token = strip_tags($request->_token);
-        $stores->status         = ($request->status == 1) ? 1 : 0;
-        $stores->avatar         = $uploadFile;
-        $stores->save();
-        return redirect()->back()->with('save_succeeded',config('admin.save_succeeded'));
+
+        $user_id = User::create([
+            'username'       => strip_tags($request->username),
+            'email'          => strip_tags($request->email),
+            'password'       => bcrypt($request->password),
+            'fullname'       => strip_tags($request->fullname),
+            'remember_token' => strip_tags($request->_token),
+            'status'         => ($request->status == 1) ? 1 : 0,
+            'avatar'         => $uploadFile
+        ])->id;
+        
+        if($user_id){
+            RoleUser::updateOrInsert($request->roles, $user_id);
+            return redirect()->back()->with('save_succeeded',config('admin.save_succeeded'));
+        }
+        return redirect()->back()->with('failed',config('admin.failed'));
 
     }
 
@@ -75,7 +88,16 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
+        $user = $this->user->getItem($id);
+        if( ! $user ){
+            return view('admins.errors.404');
+        }
+        if (Auth::id() !== $user->id && Auth::user()->permission !== 'Supper_admin') {
+            return redirect()->route('users.index')->with('failed','Sorry, You are not authorized');
+        }
+        return view('admins.users.show',[
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -86,9 +108,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        
         $user = $this->user->getItem($id);
+        
         if( ! $user ){
             return view('admins.errors.404');
+        }
+        if (Auth::id() !== $user->id && Auth::user()->permission !== 'Supper_admin') {
+            return redirect()->route('users.index')->with('failed','Sorry, You are not authorized');
         }
         return view('admins.users.edit',[
             'user' => $user,
@@ -104,8 +131,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UserRequest $request, $id)
-    {
+    {   
         $update = $this->user->getItem($id);
+
+        if (Auth::id() !== $update->id && Auth::user()->permission !== 'Supper_admin') {
+            return redirect()->route('users.index')->with('failed','Sorry, You are not authorized');
+        }
+
         if($update){
             $uploadFile = $this->articleService->uploadFile('avatar','uploads/users/');
 
@@ -132,9 +164,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        if (! Auth::user()->can('create')) {
+            return redirect()->route('users.index')->with('failed','Sorry, You are not authorized');
+        }
         $user = $this->user->getItem($id);
         if( !$user ){
             return redirect()->route('users.index')->with('failed',config('admin.failed'));
+        }
+        if( $user->permission == 'Supper_admin' ){
+            return redirect()->route('users.index')->with('failed', 'Sorry, You cannot delete Supper Admin!');
         }
         $del = $user->delete();
         if($del){

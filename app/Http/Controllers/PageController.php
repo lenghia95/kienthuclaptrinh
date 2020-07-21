@@ -26,12 +26,21 @@ class PageController extends Controller
         
     }
 
-    public function index(Request $request)
-    {   
+    public function index()
+    {
         $page =  Page::getPageBySlug('chia-se');
-        return view('homes.index',[
-            'page'  => $page,
-            'posts' => Post::getPosts(strip_tags($request->s)),
+        return view('homes.pages.index',[
+            'page'       => $page,
+            'pagetitle'  => 'Trang chia sẻ kiến thức',
+            'posts'      => Post::getPosts(),
+        ]);
+    }
+    
+    public function search(Request $request)
+    {   
+        return view('homes.pages.search',[
+            'pagetitle'  => 'Tìm kiếm - '.strip_tags($request->s),
+            'posts'      => Post::getPosts(strip_tags($request->s)),
         ]);
     }
 
@@ -39,13 +48,14 @@ class PageController extends Controller
     {
         $about = Page::getPageBySlug('about');
         return view('homes.pages.about',[
-            'about'     => $about
+            'about'     => $about,
+            'pagetitle'  => 'Giới thiệu về Blog',
         ]);
     }
 
     public function contact()
     {
-        return view('homes.pages.contact');
+        return view('homes.pages.contact',['pagetitle'  => 'Liên hệ']);
     }
 
     public function postContact(ContactRequest $request)
@@ -65,7 +75,7 @@ class PageController extends Controller
         if( Auth::check() ){
             return redirect( url('/') ) ;
         }
-        return view('homes.pages.login');
+        return view('auth.login',['pagetitle'  => 'Đăng nhập']);
     }
 
     public function postLogin(Request $request)

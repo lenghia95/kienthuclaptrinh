@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
+
 use App\Models\Contact;
 
 class ContactController extends Controller
@@ -16,6 +18,9 @@ class ContactController extends Controller
     protected $title = 'Contacts';
     public function index()
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         return view('admins.contacts.index',[
             'contacts' => Contact::getItems(),
             'title'    => $this->title
@@ -51,6 +56,9 @@ class ContactController extends Controller
      */
     public function show($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $obj = new Contact;
         return view('admins.contacts.show',[
             'contact'   => $obj->getItem($id),
@@ -89,6 +97,9 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $del = Contact::delItem($id);
         if($del){
             return redirect()->route('contacts.index')->with('delete_succeeded',config('admin.delete_succeeded'));

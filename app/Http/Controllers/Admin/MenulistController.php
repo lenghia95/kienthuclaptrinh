@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\MenulistRequest;
 use Session;
 
@@ -27,6 +28,9 @@ class MenulistController extends Controller
     protected $title = 'Menu List';
     public function index(Request $request)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $group = ($request->group) ? $request->group : Menugroup::first()->id;
         if ($request->group == '') {
             return redirect( url('admin/menulists?group='.$group) );
@@ -56,6 +60,9 @@ class MenulistController extends Controller
      */
     public function store(MenulistRequest $request)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $this->menu->name        = strip_tags($request->name);
         $this->menu->url         = strip_tags($request->url);
         $this->menu->parent      = strip_tags($request->parent);
@@ -85,6 +92,9 @@ class MenulistController extends Controller
      */
     public function edit($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $menulist = $this->menu->getItem($id);
         if( !$menulist){
             return view('admins.errors.404');
@@ -106,6 +116,9 @@ class MenulistController extends Controller
      */
     public function update(MenulistRequest $request, $id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $stores = $this->menu->getItem($id);
         $stores->name        = strip_tags($request->name);
         $stores->url         = strip_tags($request->url);

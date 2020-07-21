@@ -50,9 +50,9 @@
         </div>
 
         <div class="col-md-6 col-lg-6 col-sm-6 col-6 text-right pr-0">
-            <a href="{{ $Setting['facebook'] }}" class="facebook"><i class="fa fa-facebook-official"></i></a>
-            <a href="{{ $Setting['youtube'] }}" class="youtube"><i class="fa fa-youtube"></i></a>
-            <a href="{{ $Setting['googleplus'] }}" class="google-plus"><i class="fa fa-google-plus"></i></a>
+            <a target="_blank" href="{{ $Setting['facebook'] }}" class="facebook"><i class="fa fa-facebook-official"></i></a>
+            <a target="_blank" href="{{ $Setting['youtube'] }}" class="youtube"><i class="fa fa-youtube"></i></a>
+            <a target="_blank" href="{{ $Setting['googleplus'] }}" class="google-plus"><i class="fa fa-google-plus"></i></a>
            
             @if(Auth::check())
             <div class="dropdown">

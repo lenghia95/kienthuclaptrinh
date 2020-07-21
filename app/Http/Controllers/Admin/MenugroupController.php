@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\MenugroupRequest;
 
 use App\Models\Menugroup;
@@ -24,6 +25,9 @@ class MenugroupController extends Controller
 
     public function index()
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         return view('admins.menugroups.index',[
             'title'          => $this->title,
             'menuGroups'     => $this->menu->getItems()
@@ -48,6 +52,9 @@ class MenugroupController extends Controller
      */
     public function store(MenugroupRequest $request)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $this->menu->name        = $request->name;
         $this->menu->key         = $request->key;
         $this->menu->description = $request->description;
@@ -75,6 +82,9 @@ class MenugroupController extends Controller
      */
     public function edit($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $menuGroup = $this->menu->getItem($id);
         if(! $menuGroup){
             return view('admins.errors.404');
@@ -95,6 +105,9 @@ class MenugroupController extends Controller
      */
     public function update(MenugroupRequest $request, $id)
     {   
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $stores = $this->menu->getItem($id);
         $stores->name        = $request->name;
         $stores->key         = $request->key;

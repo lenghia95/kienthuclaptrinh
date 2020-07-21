@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\Setting;
 use App\Helpers\InputRender;
+use Illuminate\Support\Str;
 
 class SettingController extends Controller
 {
@@ -17,6 +19,9 @@ class SettingController extends Controller
      */
     public function index()
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         return view('admins.settings.index',[
             'settings' => Setting::listOptions(),
             'inputRender' => new InputRender,
@@ -76,6 +81,9 @@ class SettingController extends Controller
      */
     public function update(Request $request)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         foreach ($request->all() as $key => $value )
         {
             $uploadFile = $this->uploadFile($key);
@@ -92,7 +100,7 @@ class SettingController extends Controller
     {
         if(request()->hasFile($key)){
             $duoiFile = request()->file($key)->getClientOriginalExtension();
-            $fileName = 'logo-'.time().str_random(3).'.'.$duoiFile;
+            $fileName = 'logo-'.time().Str::random(3).'.'.$duoiFile;
             request()->file($key)->move(public_path('uploads/settings'), $fileName);
             $this->delFile($key);
             return '/uploads/settings/'.$fileName;

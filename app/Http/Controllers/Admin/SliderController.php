@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SliderRequest;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\Slider;
 use Response;
@@ -19,6 +20,9 @@ class SliderController extends Controller
     protected $title = 'Sliders';
     public function index()
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         return view('admins.sliders.index',[
             'sliders' => Slider::getItems(),
             'title'    => $this->title
@@ -43,6 +47,9 @@ class SliderController extends Controller
      */
     public function store(SliderRequest $request)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $stores = new Slider;
         $stores->key  = $request->key;
         $stores->save();
@@ -68,6 +75,9 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $slide = Slider::getItem($id);
         if( ! $slide ){
             return view('admins.errors.404');
@@ -87,6 +97,9 @@ class SliderController extends Controller
      */
     public function update(SliderRequest $request, $id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $slider = new Slider;
         $update = $slider->getItem($id);
         if(!$update){
@@ -106,6 +119,9 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
+        if (! Gate::allows('full')) {
+            return redirect( url('admin') )->with('failed', 'Sorry, You are not authorized');
+        }
         $slider = Slider::getItem($id);
         if( !$slider ){
             return redirect()->route('sliders.index')->with('failed',config('admin.failed'));

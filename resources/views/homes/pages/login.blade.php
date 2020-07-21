@@ -107,7 +107,7 @@
                             </form>
                         </div>
                         <div class="col text-center">
-                            <a href="{{ url('/auth/redirect/facebook') }}" class="fb btn social-facebook"><i class="fa fa-facebook fa-fw"></i> Login with Facebook</a>
+                            <a href="{{ route('facebook.login')}}" class="fb btn social-facebook"><i class="fa fa-facebook fa-fw"></i> Login with Facebook</a>
                             <a href="javascript:void(0)" class="twitter btn social-twitter"><i class="fa fa-twitter fa-fw"></i> Login with Twitter</a>
                             <a href="javascript:void(0)" class="google btn social-google"><i class="fa fa-google fa-fw"></i> Login with Google+</a>
                         </div>

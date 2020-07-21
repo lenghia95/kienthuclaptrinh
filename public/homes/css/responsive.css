@@ -2,7 +2,15 @@
     .infomation p{
       text-align: center;
     }
-    
+    .newspaper-home {
+        margin-top: 10px;
+        border-top: 1px dashed #e0dddd;
+    }
+}
+@media (max-width:991px) {
+    .main-menu .nav-link{
+        font-size: x-small;
+    }
 }
 
 @media (max-width:767px) and (min-width: 577px) {

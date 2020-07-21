@@ -1,8 +1,15 @@
 body {
     /*background: #FFF url(../images/background_main.png) top center;*/
+    /* font-family: 'Roboto', sans-serif; */
+    /* font-family: 'Oswald', sans-serif; */
+    font-family: 'Quicksand', sans-serif;
+    background-color: #f5f5f5;
 }
 header{
 	background-color: #fff;
+}
+input:focus{
+  box-shadow: none !important; 
 }
 img{
 	max-width: 100%;
@@ -16,10 +23,17 @@ li{
 a{
 	color: black;
 }
+span, label,a{
+  border-radius: 0px !important;
+}
 a:hover{
 	text-decoration: none;
 }
-
+::selection {
+  /*background: #ddd78f;*/
+  background-color: #ff6200;
+  color: #fff;
+}
 input{
   border-radius: 0px !important;
 }
@@ -27,6 +41,20 @@ textarea[name=content]{
   border-radius: 20px;
   background: rgb(238, 238, 238);
 }
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: #d6d6d6;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4267b2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a7c1f1; 
+}
+
 .textarea-comment{
   margin-bottom: 0px;
 }
@@ -50,10 +78,14 @@ textarea[name=content]{
 	background-color: #4267b2;
 }
 .header-logo{
-	border-bottom: 1px solid #e0e0e0;
-    -webkit-box-shadow: 0px 0px 1px 0px rgba(1, 1, 1, 0.1);
+	/* border-bottom: 1px solid #e0e0e0; */
+    /* -webkit-box-shadow: 0px 0px 1px 0px rgba(1, 1, 1, 0.1); */
+    background-color: #3498db
 }
-
+.dropdown a.dropbtn:hover{
+	color: #fff;
+    opacity: 0.8;
+}
 
 .fakeimg {
     height: auto;
@@ -158,7 +190,7 @@ textarea[name=content]{
 }
 
 .bg-primary{
-	background-color: #4267b2 !important;
+	background-color: #2980b9 !important;
 }
 .custom-logo-link img{
     padding-top: 5px;
@@ -381,9 +413,8 @@ input[type=search]:focus {
 
 /* Change the link color on hover */
 .categories li a:hover, .categories li a.active{
-  background-color: #4267b2;
-  color: white;
-  border-bottom: 0px;
+    color: #4267b2;
+    margin-left: 3px;
 }
 
  .flex-column li a {
@@ -417,6 +448,9 @@ input[type=search]:focus {
   width: 100%;
   margin-top: 10px
 }
+.mpw-post:last-child {
+  border-bottom: 0px;
+}
 .mpw-post .post-img{
 	width: 80px;
 	float: left;
@@ -427,12 +461,18 @@ input[type=search]:focus {
   transition: transform .2s;
   transform: scale(1.04);
 }
+.newspaper-x-post-meta a span{
+  color: #fff;
+}
+.details{
+  min-height: 55px
+}
 .details h6 a{
 	font-size:15px;
 }
 
 .post-home h5,p{
-	text-align: left;
+	text-align: justify;
 }
 
 .post-home{
@@ -440,8 +480,8 @@ input[type=search]:focus {
   min-height: 370px;
 }
 .post-home img{
-  min-height: 236px;
-  object-fit: cover;
+  min-height: 220px;
+  /* object-fit: cover; */
 }
 
 .search-404{
@@ -461,7 +501,7 @@ input[type=search]:focus {
 
 .list-category a:hover {
     color: #3b97f9 !important;
-    margin-left: 5px;
+    /*margin-left: 5px;*/
 }
 
 .modal-content, .alert, button{
@@ -508,4 +548,250 @@ input[type=search]:focus {
 }
 .enotype-icon-arrow-up:before {
   content: "\f062";
+}
+
+
+
+
+/* social */
+
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  left:0px;
+  z-index:200000;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* Style the icon bar links */
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 5px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 14px;
+}
+
+/* Style the social media icons with color, if you want */
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.icon-bar .facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.icon-bar .twitter {
+  background: #55ACEE;
+  color: white;
+}
+.icon-bar .toggle-social{
+  background: #5f5f5f;
+}
+.icon-bar .google {
+  background: #dd4b39;
+  color: white;
+}
+
+.icon-bar .linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.icon-bar .youtube {
+  background: #bb0000;
+  color: white;
+}
+#social-links ul{
+  margin-bottom: 2px
+}
+
+#tick li,
+#tick2 li {
+    list-style-type: none;
+    float: left;
+    padding-right: 20px;
+    position: absolute;
+    left: 0px;
+}
+#tick li img{
+  object-fit: contain;
+}
+#tick,
+#tick2 {
+    position: relative;
+    display: block;
+    width: 5000px;
+    margin: 0;
+    content:"";
+    display: table;
+    height: 0px;
+}
+
+#outer {
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+}
+
+#outer a {
+    text-decoration: none;
+    color: #333;
+    /* font-family: Calibri; */
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600
+}
+
+/* #outer a:hover {
+    border-bottom: 2px solid #777;
+} */
+.newspaper{
+  position: relative;
+}
+
+.newspaper img{
+  height: 255px;
+  width: 100%;
+  object-fit: cover
+}
+
+.title-ticker{
+  position: absolute;
+  z-index: 1000;
+  background: #3498db;
+  padding: 10px;
+  left: 0px;
+  top: 9px;
+  color: #fff;
+  font-size: 15px;
+}
+
+.first-tag{
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  z-index: 1
+}
+.first-tag>a{
+  color: #fff;
+}
+.bf-content-br{
+  position: absolute;
+  bottom: 0px;
+  background: black;
+  opacity: 0.4;
+  height: 100%;
+  width: 100%;
+}
+.bf-content{
+  position: absolute;
+  bottom: 0px;
+  color: #fff;
+  left: 10px;
+}
+h5.recent-title {
+  font-size: 17px;
+  
+}
+.recent-title>a{
+  color: #fff;
+}
+.newspaper-home{
+  margin-top: -10px;
+}
+.recent-date{
+  color: #e0e0e0;
+  font-size: 13px;
+}
+.newspaper .mom-post-meta{
+  margin-bottom: 0px;
+}
+.box-title{
+  position: relative;
+  clear: both;
+  z-index: 1;
+  margin-bottom: 10px;
+  line-height: 33px;
+}
+.box-title .title{
+  display: inline-block;
+  position: relative;
+  background-color: #fff;
+  color: #1c1c1c;
+  font-size: 15px;
+  letter-spacing: -.4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  z-index: 1;
+  margin: 0;
+  padding-right: 15px;
+  padding-left: 25px;
+}
+.box-title h2.title:before{
+  position: absolute;
+  content: "";
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background-color: #EA0253;
+  left: 0;
+  top: 49%;
+  -webkit-transform: translateY(-49%);
+  -ms-transform: translateY(-49%);
+  transform: translateY(-49%);
+  z-index: 5;
+}
+.box-title:after{
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 14px;
+  left: 0;
+  width: 99%;
+  border: 4px double #4267b2;
+}
+.slider-blog{
+  width: 100%;
+  padding: 0px 15px;
+}
+.slider-relate{
+  width: 100%;
+  padding: 0px 15px;
+}
+.blogspot{
+  float: left;
+  padding: 2px;
+  max-width: 100%;
+}
+.blogspot img{
+  height: 230px;
+  object-fit: cover
+}
+.blogspot:hover, .newspaper:hover{
+  opacity: 0.8;
+  transform: scale(1.01);
+}
+.pagination li{
+  margin-right: 5px;
+}
+.pagination li a, .pagination li span{
+  color: #000
+}
+.page-item.active .page-link{
+  background-color: #ffc107;
+  border-color: #dee2e6;
+  line-height: 14px;
+}
+.page-item .page-link{
+    line-height: 14px;
+}
+.page-item:hover .page-link{
+    background-color: #ffc107;
+    border-color: #dee2e6;
+    color: #fff;
 }

@@ -122,7 +122,7 @@
                                         <div class="col-sm-12 mb-10">
                                             <label for="content" class="control-label">Nội dung*</label>
                                             {{-- <label for="content" generated="true" class="error"></label> --}}
-                                            <textarea class="form-control" id="content" name="content" placeholder="Input Content">{{ old('content') }}</textarea>
+                                            <textarea class="form-control" id="_content" name="content" placeholder="Input Content">{{ old('content') }}</textarea>
                                         </div>
 
                                         <hr>
@@ -175,8 +175,6 @@
 @stop
 @push('script')
     <script type="text/javascript">
-
-        CKEDITOR.replace('content');
 
         $(document).ready(function(){
             $("#valiForm").validate({

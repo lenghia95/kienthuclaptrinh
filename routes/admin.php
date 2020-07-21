@@ -17,9 +17,9 @@ Route::group(['middleware' => ['web','auth'] ], function() {
     Route::resource('configs', ConfigController::class);
 
     /* ================== Roles ================== */
-    Route::resource('role', RoleController::class);
+    Route::resource('roles', RoleController::class);
     Route::delete('/ajax/role_del/{id}', 'RoleController@ajax_del');
-    Route::get('/ajax/unique_name', 'RoleController@ajax_check_name');
+    Route::get('/ajax/role_unique_name', 'RoleController@ajax_check_name');
 
     /* ================== Menu Groups ================== */
     Route::resource('menugroups', MenugroupController::class);
@@ -68,7 +68,8 @@ Route::group(['middleware' => ['web','auth'] ], function() {
     Route::delete('/ajax/posts_del/{id}', 'PostController@ajaxDel');
     Route::get('/ajax/posts_unique_slug', 'PostController@ajaxCheckSlug');
     Route::put('/ajax/status_posts/{id}', 'PostController@ajaxStatus');
-    Route::get('/ajax/search-posts', 'PostController@ajaxSearch');
+    Route::post('/ajax/checkbox', 'PostController@ajaxCheckbox');
+    Route::post('/ajax/checkbox-status', 'PostController@ajaxCheckboxStatus');
     
     /* ================== Users Admin ================== */
     Route::resource('users', UserController::class);
@@ -79,10 +80,7 @@ Route::group(['middleware' => ['web','auth'] ], function() {
     // change password
     Route::put('change_password', 'UserController@changePassword')->name('change_password');
 
-
-//    /* ================== Login Admin ================== */
-//    Route::get('/login', 'Auth\LoginController@login')->name('login');
-//    Route::post('/login', 'Auth\LoginController@postLogin')->name('admin.login');
-//    Route::get('/logout', 'Auth\LoginController@logout');
-
 });
+
+
+
